@@ -1,0 +1,3209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRUST Realtor · Cotizador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --trust-green: #173F35;
+    --trust-green-light: #1F5449;
+    --trust-green-deep: #0E2A23;
+    --trust-gray: #97999B;
+    --trust-gray-light: #E5E5E6;
+    --trust-gray-bg: #F7F7F5;
+    --trust-cream: #FAF8F3;
+    --trust-black: #1A1A1A;
+    --trust-white: #FFFFFF;
+    --trust-accent: #C9A961;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--trust-gray-bg);
+    color: var(--trust-black);
+    line-height: 1.5;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ===== TOP NAV ===== */
+  .topbar {
+    background: var(--trust-green);
+    color: var(--trust-white);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .brand-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: 0.18em;
+    color: var(--trust-white);
+  }
+
+  .brand-sub {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
+  }
+
+  .brand-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.3);
+  }
+
+  .module-label {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(255,255,255,0.9);
+  }
+
+  .user-chip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--trust-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--trust-green-deep);
+    letter-spacing: 0;
+  }
+
+  /* ===== LAYOUT ===== */
+  .wizard-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 48px 40px 80px;
+  }
+
+  .wizard-header {
+    margin-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .wizard-title-block .eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--trust-gray);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .wizard-title {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 38px;
+    color: var(--trust-green);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .wizard-title em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--trust-green-light);
+  }
+
+  .wizard-meta {
+    text-align: right;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--trust-gray);
+    text-transform: uppercase;
+  }
+
+  .wizard-meta strong {
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--trust-black);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 4px;
+  }
+
+  /* ===== STEP INDICATOR ===== */
+  .stepper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-bottom: 40px;
+    border-top: 1px solid var(--trust-gray-light);
+    border-bottom: 1px solid var(--trust-gray-light);
+  }
+
+  .step {
+    padding: 22px 24px;
+    position: relative;
+    background: var(--trust-white);
+    border-right: 1px solid var(--trust-gray-light);
+    transition: background 0.3s ease;
+    cursor: pointer;
+  }
+
+  .step:last-child { border-right: none; }
+
+  .step-number {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    color: var(--trust-gray);
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .step-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--trust-black);
+  }
+
+  .step-desc {
+    font-size: 11px;
+    color: var(--trust-gray);
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+
+  .step.active {
+    background: var(--trust-green);
+    color: var(--trust-white);
+  }
+
+  .step.active .step-number,
+  .step.active .step-label,
+  .step.active .step-desc {
+    color: var(--trust-white);
+  }
+
+  .step.active .step-number { color: rgba(255,255,255,0.7); }
+  .step.active .step-desc { color: rgba(255,255,255,0.7); }
+
+  .step.completed {
+    background: var(--trust-cream);
+  }
+
+  .step.completed .step-number::before {
+    content: "✓ ";
+    color: var(--trust-green);
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .step.completed .step-number { color: var(--trust-green); }
+
+  /* ===== CARD SHELL ===== */
+  .card {
+    background: var(--trust-white);
+    border: 1px solid var(--trust-gray-light);
+    padding: 48px 56px;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--trust-green);
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .section-hint {
+    font-size: 13px;
+    color: var(--trust-gray);
+    margin-bottom: 36px;
+    max-width: 540px;
+    line-height: 1.55;
+  }
+
+  .divider-accent {
+    width: 40px;
+    height: 2px;
+    background: var(--trust-green);
+    margin: 8px 0 24px;
+  }
+
+  /* ===== FORM ===== */
+  .field-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px 24px;
+  }
+
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.col-3 { grid-column: span 3; }
+  .field.col-4 { grid-column: span 4; }
+  .field.col-6 { grid-column: span 6; }
+  .field.col-12 { grid-column: span 12; }
+
+  .field label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--trust-gray);
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--trust-gray-light);
+    background: var(--trust-white);
+    color: var(--trust-black);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-weight: 400;
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 70px;
+    line-height: 1.5;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: none;
+    border-color: var(--trust-green);
+    box-shadow: 0 0 0 3px rgba(23,63,53,0.08);
+  }
+
+  .field input::placeholder { color: var(--trust-gray); opacity: 0.6; }
+
+  .field-group {
+    border: 1px solid var(--trust-gray-light);
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    background: var(--trust-cream);
+  }
+
+  .field-group-title {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--trust-green);
+    margin-bottom: 20px;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .field-group-title::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: var(--trust-green);
+    border-radius: 50%;
+  }
+
+  .unit-prefix {
+    position: relative;
+  }
+
+  .unit-prefix input {
+    padding-left: 28px;
+  }
+
+  .unit-prefix::before {
+    content: attr(data-prefix);
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--trust-gray);
+    font-size: 14px;
+    z-index: 1;
+    margin-top: 14px;
+  }
+
+  .unit-suffix {
+    position: relative;
+  }
+
+  .unit-suffix input {
+    padding-right: 42px;
+  }
+
+  .unit-suffix::after {
+    content: attr(data-suffix);
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--trust-gray);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    margin-top: 14px;
+  }
+
+  /* ===== POLICY MATRIX (Step 3) ===== */
+  .policy-matrix {
+    margin-top: 8px;
+  }
+
+  .policy-header-row {
+    display: grid;
+    grid-template-columns: 200px repeat(5, 1fr);
+    gap: 1px;
+    background: var(--trust-gray-light);
+    border: 1px solid var(--trust-gray-light);
+    margin-bottom: 1px;
+  }
+
+  .policy-header-cell {
+    background: var(--trust-green);
+    color: var(--trust-white);
+    padding: 16px 14px;
+    font-family: 'Lora', serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+  }
+
+  .policy-header-cell.label-col {
+    background: var(--trust-green-deep);
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+
+  .policy-header-cell .remove-policy {
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 2px 6px;
+    transition: color 0.2s;
+  }
+
+  .policy-header-cell .remove-policy:hover { color: var(--trust-white); }
+
+  .policy-row {
+    display: grid;
+    grid-template-columns: 200px repeat(5, 1fr);
+    gap: 1px;
+    background: var(--trust-gray-light);
+    border-left: 1px solid var(--trust-gray-light);
+    border-right: 1px solid var(--trust-gray-light);
+  }
+
+  .policy-row:last-child { border-bottom: 1px solid var(--trust-gray-light); }
+
+  .policy-cell {
+    background: var(--trust-white);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+  }
+
+  .policy-cell.label {
+    background: var(--trust-cream);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--trust-green);
+    justify-content: flex-start;
+  }
+
+  .policy-cell input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--trust-black);
+    padding: 4px;
+  }
+
+  .policy-cell input:focus {
+    outline: none;
+    background: var(--trust-cream);
+  }
+
+  .policy-section-header {
+    background: var(--trust-gray-bg);
+    padding: 10px 14px;
+    font-family: 'Lora', serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--trust-green);
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--trust-gray-light);
+  }
+
+  .add-policy-btn {
+    margin-top: 20px;
+    background: transparent;
+    border: 1px dashed var(--trust-green);
+    color: var(--trust-green);
+    padding: 12px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+  }
+
+  .add-policy-btn:hover {
+    background: var(--trust-green);
+    color: var(--trust-white);
+  }
+
+  /* ====================================================================== */
+  /* ===== PASO 4 — COTIZACIÓN FORMATO CARTA (vista previa + PDF) ======== */
+  /* ====================================================================== */
+
+  /* Layout general del paso 4 */
+  .preview-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  /* La hoja carta. Dimensiones: 8.5" × 11" a 96dpi = 816 × 1056 px */
+  .doc-carta {
+    width: 816px;
+    min-height: 1056px;
+    background: var(--trust-white);
+    box-shadow: 0 20px 60px -30px rgba(23,63,53,0.25);
+    padding: 56px 60px 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--trust-black);
+    position: relative;
+    margin: 0 auto;
+    box-sizing: border-box;
+    /* Para que sea fácil escalar la hoja a móvil */
+    transform-origin: top center;
+  }
+
+  /* Cuando el contenedor padre es más estrecho que la hoja, escalamos */
+  .doc-carta-scaler {
+    width: 100%;
+    overflow: visible;
+  }
+
+  /* === HEADER DEL DOCUMENTO (compacto, una línea) === */
+  .doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--trust-green);
+    gap: 24px;
+  }
+
+  .doc-header-brand {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .doc-header-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--trust-gray);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .doc-header-project {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--trust-green);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 0;
+    display: inline;
+  }
+
+  .doc-header-project-sub {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--trust-gray);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  /* Meta del header en horizontal: Cliente · Fecha · Vigencia */
+  .doc-header-meta {
+    text-align: right;
+    font-size: 10px;
+    line-height: 1.4;
+    color: var(--trust-gray);
+    letter-spacing: 0.02em;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .doc-header-meta .meta-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .doc-header-meta .meta-label {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--trust-gray);
+  }
+
+  .doc-header-meta .meta-value {
+    font-family: 'Lora', serif;
+    font-size: 11px;
+    color: var(--trust-black);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  /* === HERO NUMÉRICO === */
+  .doc-hero {
+    background: var(--trust-green);
+    color: var(--trust-white);
+    padding: 32px 36px;
+    margin: 0 0 32px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 28px;
+    position: relative;
+  }
+
+  .doc-hero.hero-contado {
+    grid-template-columns: 1.4fr 1fr;
+  }
+
+  .hero-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-left: 28px;
+    border-left: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .hero-block:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+
+  .hero-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    font-weight: 600;
+  }
+
+  .hero-number {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .hero-number.big {
+    font-size: 44px;
+    color: var(--trust-white);
+  }
+
+  .hero-number.med {
+    font-size: 28px;
+    color: var(--trust-white);
+  }
+
+  .hero-subline {
+    font-size: 10px;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 0.05em;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* === INFO GRID (datos cliente / unidad) === */
+  .doc-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 48px;
+    margin-bottom: 32px;
+  }
+
+  .doc-info-block-title {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--trust-green);
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--trust-gray-light);
+  }
+
+  .doc-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 4px 0;
+    font-size: 11px;
+  }
+
+  .doc-info-row .dlabel {
+    color: var(--trust-gray);
+    letter-spacing: 0.02em;
+    font-weight: 500;
+  }
+
+  .doc-info-row .dvalue {
+    color: var(--trust-black);
+    font-weight: 600;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* === SECTION TITLES (para precio y estructura) === */
+  .doc-section-title {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--trust-green);
+    letter-spacing: 0.01em;
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--trust-gray-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .doc-section-title::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    background: var(--trust-green);
+    border-radius: 50%;
+  }
+
+  /* === DESGLOSE DEL PRECIO === */
+  .doc-price-breakdown {
+    margin-bottom: 28px;
+  }
+
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 16px;
+    padding: 8px 0;
+    font-size: 12px;
+    border-bottom: 1px dotted var(--trust-gray-light);
+    align-items: baseline;
+  }
+
+  .price-row:last-child { border-bottom: none; }
+
+  .price-row .price-concept {
+    color: var(--trust-black);
+    font-weight: 500;
+  }
+
+  .price-row .price-detail {
+    color: var(--trust-gray);
+    font-size: 10px;
+    letter-spacing: 0.03em;
+  }
+
+  .price-row .price-amount {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    min-width: 120px;
+    text-align: right;
+    font-size: 13px;
+  }
+
+  .price-row.price-discount .price-amount {
+    color: #9B2222;
+  }
+
+  .price-row.price-final {
+    border-top: 2px solid var(--trust-green);
+    border-bottom: none;
+    padding: 14px 0 4px;
+    margin-top: 6px;
+  }
+
+  .price-row.price-final .price-concept {
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--trust-green);
+    letter-spacing: 0.01em;
+  }
+
+  .price-row.price-final .price-amount {
+    font-size: 22px;
+    color: var(--trust-green);
+  }
+
+  /* === ESTRUCTURA DEL PAGO (3 CARDS HORIZONTALES) === */
+  .doc-structure {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+
+  .doc-structure.structure-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .struct-card {
+    background: var(--trust-cream);
+    padding: 20px 22px;
+    border-left: 3px solid var(--trust-green);
+  }
+
+  .struct-label {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--trust-gray);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .struct-amount {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--trust-green);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .struct-detail {
+    font-size: 10px;
+    color: var(--trust-gray);
+    letter-spacing: 0.02em;
+  }
+
+  .struct-detail strong {
+    color: var(--trust-black);
+    font-weight: 600;
+  }
+
+  /* === CRONOGRAMA HORIZONTAL COMPACTO === */
+  .doc-schedule {
+    margin-bottom: 24px;
+  }
+
+  /* Tabla horizontal: pagos como columnas, no como filas */
+  .schedule-h {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0;
+    border: 1px solid var(--trust-gray-light);
+    background: var(--trust-white);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Cada celda es un "pago" individual */
+  .sh-cell {
+    padding: 8px 6px;
+    border-right: 1px solid var(--trust-gray-light);
+    border-bottom: 1px solid var(--trust-gray-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 44px;
+  }
+
+  .sh-cell:last-child { border-right: none; }
+
+  /* Última fila no tiene border-bottom */
+  .sh-cell.sh-last-row { border-bottom: none; }
+
+  /* Etiqueta superior (M1, ENGANCHE, etc.) */
+  .sh-label {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--trust-gray);
+    font-weight: 600;
+    margin-bottom: 2px;
+    line-height: 1;
+  }
+
+  /* Monto */
+  .sh-amount {
+    font-family: 'Lora', serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--trust-black);
+    line-height: 1;
+  }
+
+  /* Pago especial (Enganche o Escrituración) - destacado en verde */
+  .sh-cell.sh-key {
+    background: var(--trust-cream);
+  }
+
+  .sh-cell.sh-key .sh-label {
+    color: var(--trust-green);
+    font-weight: 700;
+  }
+
+  .sh-cell.sh-key .sh-amount {
+    color: var(--trust-green);
+  }
+
+  /* Celdas vacías de relleno (cuando la última fila no está completa) */
+  .sh-cell.sh-empty {
+    background: var(--trust-gray-bg);
+  }
+
+  /* === FOOTER DEL DOCUMENTO === */
+  .doc-footer {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--trust-gray-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 8.5px;
+    color: var(--trust-gray);
+    letter-spacing: 0.05em;
+  }
+
+  .doc-footer-notes {
+    flex: 1;
+    max-width: 420px;
+    line-height: 1.6;
+    font-style: italic;
+    font-size: 9px;
+    color: var(--trust-gray);
+  }
+
+  .doc-footer-brand {
+    text-align: right;
+    min-width: 160px;
+  }
+
+  .doc-footer-brand .fb-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--trust-green);
+  }
+
+  .doc-footer-brand .fb-logo .realtor {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    color: var(--trust-gray);
+    margin-left: 4px;
+  }
+
+  .doc-footer-brand .fb-tag {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--trust-gray);
+    margin-top: 3px;
+    font-weight: 500;
+  }
+
+  /* === PANEL DE ACCIONES (fuera del documento) === */
+  .preview-actions {
+    position: sticky;
+    top: 24px;
+  }
+
+  .action-card {
+    background: var(--trust-green);
+    color: var(--trust-white);
+    padding: 28px 24px;
+    margin-bottom: 16px;
+  }
+
+  .action-card h4 {
+    font-family: 'Lora', serif;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+
+  .action-card p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  .action-card p strong {
+    color: var(--trust-white);
+    font-weight: 700;
+  }
+
+  .action-btn {
+    width: 100%;
+    padding: 14px 18px;
+    background: var(--trust-white);
+    color: var(--trust-green);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 8px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .action-btn:hover {
+    background: var(--trust-cream);
+    transform: translateX(2px);
+  }
+
+  .action-btn.secondary {
+    background: transparent;
+    color: var(--trust-white);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .action-btn.secondary:hover {
+    background: rgba(255,255,255,0.08);
+  }
+
+  .action-btn .arrow {
+    font-size: 14px;
+    opacity: 0.6;
+  }
+
+  .summary-card {
+    background: var(--trust-white);
+    border: 1px solid var(--trust-gray-light);
+    padding: 22px 24px;
+  }
+
+  .summary-card h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--trust-gray);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+
+  .summary-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 11px;
+    border-bottom: 1px dotted var(--trust-gray-light);
+  }
+
+  .summary-line:last-child { border-bottom: none; }
+
+  .summary-line .summary-label { color: var(--trust-gray); }
+
+  .summary-line .summary-value {
+    font-weight: 600;
+    color: var(--trust-black);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* === RESPONSIVE DEL DOCUMENTO === */
+  /* En pantallas menores al ancho de la hoja carta + sidebar, reorganizamos */
+  @media (max-width: 1200px) {
+    .preview-wrapper {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .preview-actions {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+  }
+
+  /* En móvil (< 900px), el documento fluye natural: pierde su ancho fijo
+     y se adapta. El PDF sigue siendo tamaño carta porque html2pdf fuerza
+     windowWidth: 816, así que el PDF no se verá afectado. */
+  @media (max-width: 900px) {
+    .preview-actions {
+      grid-template-columns: 1fr;
+    }
+    .doc-carta {
+      width: 100%;
+      min-width: 0;
+      padding: 28px 22px 24px;
+      font-size: 13px;
+    }
+    .doc-header {
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .doc-header-meta {
+      text-align: left;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+    }
+    .doc-header-meta .meta-label { margin-top: 0; }
+    .doc-header-meta .meta-value { margin-bottom: 0; font-size: 12px; }
+    .doc-header-project { font-size: 26px; }
+    .doc-hero {
+      padding: 24px 22px;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .hero-block {
+      border-left: none;
+      padding-left: 0;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-block:first-child {
+      padding-top: 0;
+      border-top: none;
+    }
+    .hero-number.big { font-size: 34px; }
+    .hero-number.med { font-size: 22px; }
+    .doc-info {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .doc-structure {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .doc-structure.structure-2 {
+      grid-template-columns: 1fr;
+    }
+    .struct-amount { font-size: 20px; }
+    .price-row {
+      grid-template-columns: 1fr auto;
+      gap: 4px 14px;
+    }
+    .price-row .price-detail {
+      grid-column: 1 / -1;
+      margin-top: -4px;
+      order: 3;
+    }
+    .schedule-h { grid-template-columns: repeat(5, 1fr) !important; }
+    .sh-cell { padding: 6px 4px; min-height: 38px; }
+    .sh-amount { font-size: 10px; }
+    .doc-footer {
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .doc-footer-brand { text-align: left; }
+  }
+
+
+  /* ===== NAV BUTTONS ===== */
+  .wizard-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding: 24px 0 0;
+    border-top: 1px solid var(--trust-gray-light);
+  }
+
+  .btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-primary {
+    background: var(--trust-green);
+    color: var(--trust-white);
+  }
+
+  .btn-primary:hover {
+    background: var(--trust-green-deep);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--trust-gray);
+    padding-left: 0;
+  }
+
+  .btn-secondary:hover { color: var(--trust-green); }
+
+  .btn .chevron { font-size: 16px; line-height: 0; }
+
+  /* ===== STEP PANELS ===== */
+  .step-panel { display: none; animation: fadeIn 0.4s ease; }
+  .step-panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== MINI-FOOTER ===== */
+  .mini-footer {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 10px;
+    color: var(--trust-gray);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .mini-footer strong {
+    color: var(--trust-green);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+  }
+
+  /* ===== DISCLAIMER ===== */
+  .disclaimer {
+    background: var(--trust-cream);
+    border-left: 3px solid var(--trust-accent);
+    padding: 14px 18px;
+    font-size: 11px;
+    color: var(--trust-gray);
+    line-height: 1.6;
+    margin-top: 16px;
+    font-style: italic;
+  }
+
+  /* ===== UNIT SUMMARY CARD (step 3) ===== */
+  .unit-summary-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--trust-green);
+    color: var(--trust-white);
+    padding: 24px 32px;
+    margin-bottom: 28px;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .unit-summary-project {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin-bottom: 6px;
+  }
+
+  .unit-summary-details {
+    font-size: 12px;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.03em;
+  }
+
+  .unit-summary-details .dot {
+    margin: 0 6px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .unit-summary-right {
+    text-align: right;
+  }
+
+  .unit-summary-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 4px;
+  }
+
+  .unit-summary-price {
+    font-family: 'Lora', serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ===== RESULT BOX ===== */
+  .result-box {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--trust-green);
+    padding: 12px 14px;
+    background: var(--trust-white);
+    border: 1px solid var(--trust-green);
+    letter-spacing: -0.01em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ===== TOGGLE ===== */
+  .toggle-wrapper {
+    margin-bottom: 20px;
+  }
+
+  .toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .toggle-label input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .toggle-slider {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    background: var(--trust-gray-light);
+    border-radius: 22px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .toggle-slider::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    background: var(--trust-white);
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .toggle-label input[type="checkbox"]:checked + .toggle-slider {
+    background: var(--trust-green);
+  }
+
+  .toggle-label input[type="checkbox"]:checked + .toggle-slider::after {
+    transform: translateX(18px);
+  }
+
+  .toggle-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--trust-black);
+  }
+
+  /* ===== PAYMENT TABLE ===== */
+  .payment-table {
+    border: 1px solid var(--trust-gray-light);
+    background: var(--trust-white);
+    margin-bottom: 16px;
+  }
+
+  .pt-header,
+  .pt-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1.4fr 2fr;
+    gap: 1px;
+    background: var(--trust-gray-light);
+  }
+
+  .pt-header { border-bottom: 2px solid var(--trust-green); }
+
+  .pt-header .pt-cell,
+  .pt-header .pt-cell-label {
+    background: var(--trust-green-deep);
+    color: var(--trust-white);
+    padding: 12px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .pt-row .pt-cell,
+  .pt-row .pt-cell-label {
+    background: var(--trust-white);
+    padding: 12px 14px;
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+  }
+
+  .pt-row .pt-cell-label {
+    background: var(--trust-cream);
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--trust-green);
+  }
+
+  .pt-input {
+    width: 100%;
+    border: 1px solid var(--trust-gray-light);
+    background: var(--trust-white);
+    padding: 8px 10px 8px 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--trust-black);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pt-input:focus {
+    outline: none;
+    border-color: var(--trust-green);
+    box-shadow: 0 0 0 3px rgba(23,63,53,0.08);
+  }
+
+  .pt-input.pt-readonly {
+    background: var(--trust-gray-bg);
+    color: var(--trust-gray);
+    cursor: not-allowed;
+  }
+
+  .pt-input-small {
+    width: 60px;
+    border: 1px solid var(--trust-gray-light);
+    background: var(--trust-white);
+    padding: 6px 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--trust-black);
+    text-align: center;
+  }
+
+  .pt-detail {
+    font-size: 11px;
+    color: var(--trust-gray);
+    letter-spacing: 0.03em;
+    font-style: italic;
+  }
+
+  .men-detalle-grid {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .men-detalle-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-style: normal;
+  }
+
+  .men-detalle-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--trust-gray);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .men-detalle-field .unit-prefix input {
+    width: 110px;
+  }
+
+  .pt-total-row {
+    border-top: 2px solid var(--trust-green);
+  }
+
+  .pt-total-row .pt-cell,
+  .pt-total-row .pt-cell-label {
+    background: var(--trust-green);
+    color: var(--trust-white);
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pt-total-row .pt-detail {
+    color: rgba(255,255,255,0.7);
+    font-style: italic;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  /* Hide mensualidades row when toggle off */
+  .pt-row-mensualidades.hidden { display: none; }
+
+  /* ===== VALIDATION BANNER ===== */
+  .validation-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    font-size: 12px;
+    letter-spacing: 0.02em;
+    font-weight: 500;
+  }
+
+  .validation-banner.validation-ok {
+    background: #EFF6F2;
+    color: var(--trust-green);
+    border-left: 3px solid var(--trust-green);
+  }
+
+  .validation-banner.validation-error {
+    background: #FDF2F2;
+    color: #9B2222;
+    border-left: 3px solid #9B2222;
+  }
+
+  .val-icon {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* ===== AMORTIZATION TABLE ===== */
+  .amortizacion-table {
+    background: var(--trust-white);
+    border: 1px solid var(--trust-gray-light);
+  }
+
+  .am-row {
+    display: grid;
+    grid-template-columns: 60px 2fr 1fr 1fr;
+    border-bottom: 1px solid var(--trust-gray-light);
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .am-row:last-child { border-bottom: none; }
+
+  .am-row.am-header {
+    background: var(--trust-green-deep);
+    color: var(--trust-white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .am-row .am-cell {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+  }
+
+  .am-row .am-cell.am-right {
+    justify-content: flex-end;
+  }
+
+  .am-row.am-enganche { background: var(--trust-cream); font-weight: 600; }
+  .am-row.am-entrega { background: var(--trust-cream); font-weight: 600; border-top: 2px solid var(--trust-green); }
+  .am-row.am-mensualidad:nth-child(odd) { background: #FBFBF9; }
+
+  .am-row.am-enganche .am-cell,
+  .am-row.am-entrega .am-cell {
+    color: var(--trust-green);
+  }
+
+  /* ===== RADIO & SELECT STYLE ===== */
+  .type-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .type-option {
+    border: 1px solid var(--trust-gray-light);
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--trust-white);
+  }
+
+  .type-option.selected {
+    border-color: var(--trust-green);
+    background: var(--trust-cream);
+  }
+
+  .type-option .type-title {
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--trust-green);
+    margin-bottom: 2px;
+  }
+
+  .type-option .type-desc {
+    font-size: 10px;
+    color: var(--trust-gray);
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .wizard-shell { padding: 24px 20px 60px; }
+    .card { padding: 32px 24px; }
+    .stepper { grid-template-columns: 1fr 1fr; }
+    .step:nth-child(2) { border-right: none; }
+    .field.col-3, .field.col-4 { grid-column: span 6; }
+    .field.col-6 { grid-column: span 12; }
+    .pt-header, .pt-row { grid-template-columns: 1.3fr 1fr 1.2fr 1.5fr; font-size: 11px; }
+  }
+
+  /* === AJUSTES PARA IMPRESIÓN / PDF === */
+  /* Cuando el usuario imprime (o guarda como PDF), aplicamos estas reglas
+     para que SOLO se imprima la cotización (el documento .doc-carta),
+     ocultando todo lo demás de la interfaz. */
+  @media print {
+    /* Forzar colores y fondos al imprimir (importante para Chrome/Edge) */
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    /* Ocultar todo de la interfaz */
+    .topbar,
+    .wizard-header,
+    .stepper,
+    .wizard-nav,
+    .mini-footer,
+    .preview-actions,
+    .card > .section-title,
+    .card > .divider-accent,
+    .card > .section-hint {
+      display: none !important;
+    }
+
+    /* Limpiar contenedores externos */
+    html, body {
+      background: white !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    .wizard-shell {
+      padding: 0 !important;
+      max-width: none !important;
+      margin: 0 !important;
+    }
+
+    .card {
+      border: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: white !important;
+    }
+
+    .preview-wrapper {
+      display: block !important;
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+
+    .doc-carta-scaler {
+      width: 100% !important;
+      overflow: visible !important;
+    }
+
+    /* La hoja: ocupa todo el ancho de la página, sin sombra ni borde */
+    .doc-carta {
+      width: 100% !important;
+      max-width: none !important;
+      min-height: 0 !important;
+      box-shadow: none !important;
+      border: none !important;
+      margin: 0 !important;
+      padding: 12mm 14mm !important;
+      transform: none !important;
+      font-size: 10.5pt !important;
+      box-sizing: border-box !important;
+      background: white !important;
+    }
+
+    /* === FORZAR LAYOUT DE ESCRITORIO (anular media queries de móvil) === */
+    /* Header en horizontal */
+    .doc-header {
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      gap: 0 !important;
+    }
+    .doc-header-meta {
+      text-align: right !important;
+      display: block !important;
+      grid-template-columns: none !important;
+      width: auto !important;
+      min-width: 180px !important;
+    }
+    .doc-header-meta .meta-label {
+      display: block !important;
+      margin-top: 2px !important;
+    }
+    .doc-header-meta .meta-value {
+      display: block !important;
+      margin-bottom: 8px !important;
+      font-size: 11pt !important;
+    }
+
+    /* Hero con 3 columnas (o 2 si es contado) */
+    .doc-hero {
+      margin: 0 0 16pt !important;
+      padding: 16pt 18pt !important;
+      grid-template-columns: 1.4fr 1fr 1fr !important;
+      gap: 22pt !important;
+      page-break-inside: avoid !important;
+    }
+    .doc-hero.hero-contado {
+      grid-template-columns: 1.4fr 1fr !important;
+    }
+    .hero-block {
+      border-left: 1px solid rgba(255,255,255,0.15) !important;
+      padding-left: 20pt !important;
+      padding-top: 0 !important;
+      border-top: none !important;
+    }
+    .hero-block:first-child {
+      border-left: none !important;
+      padding-left: 0 !important;
+    }
+
+    /* Info grid en 2 columnas */
+    .doc-info {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      gap: 18pt 32pt !important;
+    }
+
+    /* Estructura del pago: 3 cards (o 2 si es contado) */
+    .doc-structure {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 9pt !important;
+    }
+    .doc-structure.structure-2 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    /* Footer del documento en horizontal */
+    .doc-footer {
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: flex-end !important;
+      gap: 0 !important;
+    }
+    .doc-footer-brand { text-align: right !important; }
+
+    /* Price row con 3 columnas (concepto / detalle / monto) */
+    .price-row:not([style*="display:none"]):not([style*="display: none"]) {
+      display: grid !important;
+      grid-template-columns: 1fr auto auto !important;
+      gap: 12pt !important;
+    }
+    .price-row .price-detail {
+      grid-column: auto !important;
+      order: 0 !important;
+      margin-top: 0 !important;
+    }
+
+    /* Cronograma horizontal: que la fila completa quepa, celdas más compactas */
+    .schedule-h {
+      page-break-inside: avoid !important;
+    }
+    .sh-cell {
+      padding: 4pt 3pt !important;
+      min-height: 24pt !important;
+    }
+    .sh-amount { font-size: 8pt !important; }
+    .sh-label { font-size: 5.5pt !important; margin-bottom: 1pt !important; }
+
+    /* Ajustes finos de tipografía para impresión - más compactos */
+    .doc-header-project { font-size: 16pt !important; }
+    .doc-header-eyebrow { font-size: 6.5pt !important; margin-bottom: 2pt !important; }
+    .doc-header-project-sub { font-size: 6.5pt !important; }
+    .doc-header-meta .meta-value { font-size: 8.5pt !important; }
+    .doc-header-meta .meta-label { font-size: 6.5pt !important; }
+    /* Hero más compacto */
+    .hero-number.big { font-size: 18pt !important; }
+    .hero-number.med { font-size: 12pt !important; }
+    .hero-label { font-size: 6pt !important; }
+    .hero-subline { font-size: 7pt !important; }
+    .hero-block { padding-left: 14pt !important; gap: 2pt !important; }
+    .struct-amount { font-size: 12pt !important; }
+    .struct-label { font-size: 6.5pt !important; }
+    .struct-detail { font-size: 7.5pt !important; }
+    .price-row.price-final .price-amount { font-size: 12pt !important; }
+    .doc-section-title { font-size: 10pt !important; margin-bottom: 5pt !important; padding-bottom: 3pt !important; }
+    .doc-info-block-title { font-size: 6.5pt !important; margin-bottom: 5pt !important; padding-bottom: 4pt !important; }
+    .doc-info-row { font-size: 8.5pt !important; padding: 1.5pt 0 !important; }
+    .doc-info { gap: 6pt 28pt !important; margin-bottom: 10pt !important; }
+    .doc-price-breakdown { margin-bottom: 10pt !important; }
+    .doc-schedule { margin-bottom: 10pt !important; }
+    .doc-structure { gap: 6pt !important; margin-bottom: 0 !important; }
+    .struct-card { padding: 8pt 10pt !important; }
+    .doc-footer { margin-top: 10pt !important; padding-top: 6pt !important; font-size: 6.5pt !important; }
+    /* Hero más compacto en altura */
+    .doc-hero { padding: 10pt 14pt !important; margin-bottom: 10pt !important; gap: 16pt !important; }
+    .doc-header { margin-bottom: 10pt !important; padding-bottom: 6pt !important; }
+    .price-row { padding: 4pt 0 !important; font-size: 9pt !important; }
+    .price-row .price-amount { font-size: 10pt !important; }
+    .price-row.price-final { padding: 8pt 0 3pt !important; }
+
+    /* Los bloques estructurales no se cortan a la mitad */
+    .doc-info,
+    .struct-card,
+    .doc-section-title,
+    .doc-footer {
+      page-break-inside: avoid !important;
+    }
+
+    /* Cuando la clase printing-quote está activa, ocultamos también
+       el resto de paneles (paso 1, 2, 3) que pudieran estar en el DOM */
+    body.printing-quote .step-panel:not([data-panel="4"]) {
+      display: none !important;
+    }
+
+    /* Configuración de página tamaño carta sin márgenes
+       (los márgenes los maneja el .doc-carta internamente) */
+    @page {
+      size: letter;
+      margin: 0;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-logo">TRUST</div>
+    <div class="brand-sub">realtor</div>
+    <div class="brand-divider"></div>
+    <div class="module-label">Cotizador</div>
+  </div>
+  <div class="user-chip">
+    <span>ALVARO · ADMIN</span>
+    <div class="user-avatar">A</div>
+  </div>
+</div>
+
+<div class="wizard-shell">
+
+  <!-- HEADER -->
+  <div class="wizard-header">
+    <div class="wizard-title-block">
+      <div class="eyebrow">Nueva cotización</div>
+      <h1 class="wizard-title">Genera una <em>cotización</em> profesional</h1>
+    </div>
+    <div class="wizard-meta">
+      Fecha
+      <strong>22 de abril, 2026</strong>
+    </div>
+  </div>
+
+  <!-- STEPPER -->
+  <div class="stepper">
+    <div class="step active" data-step="1">
+      <div class="step-number">Paso 1</div>
+      <div class="step-label">Proyecto & Unidad</div>
+      <div class="step-desc">Datos del inmueble</div>
+    </div>
+    <div class="step" data-step="2">
+      <div class="step-number">Paso 2</div>
+      <div class="step-label">Cliente</div>
+      <div class="step-desc">Información del prospecto</div>
+    </div>
+    <div class="step" data-step="3">
+      <div class="step-number">Paso 3</div>
+      <div class="step-label">Configuración del pago</div>
+      <div class="step-desc">Esquema personalizado</div>
+    </div>
+    <div class="step" data-step="4">
+      <div class="step-number">Paso 4</div>
+      <div class="step-label">Vista previa</div>
+      <div class="step-desc">Revisa y genera</div>
+    </div>
+  </div>
+
+  <!-- PANEL 1: PROYECTO + UNIDAD -->
+  <div class="step-panel active" data-panel="1">
+    <div class="card">
+      <div class="section-title">Proyecto y unidad</div>
+      <div class="divider-accent"></div>
+      <div class="section-hint">
+        Captura los datos del proyecto y la unidad específica que vas a cotizar. Esta información aparecerá en el encabezado de la cotización junto con el branding del desarrollo.
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Proyecto</div>
+        <div class="field-grid">
+          <div class="field col-8">
+            <label>Desarrollo</label>
+            <select id="selector-proyecto" onchange="onProyectoChange()">
+              <option selected>Balcana Vertical</option>
+              <option>Luciana Providencia</option>
+              <option>Luciana Alberta</option>
+              <option>Lázaro</option>
+              <option>Janeiro 2480</option>
+              <option>Union Square</option>
+              <option>Epicentria</option>
+              <option>Neza</option>
+              <option>VIM Tower Universidad</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </div>
+          <div class="field col-4">
+            <label>Tipo de producto</label>
+            <select>
+              <option selected>Preventa</option>
+              <option>Obra terminada</option>
+            </select>
+          </div>
+          <div class="field col-12" id="proyecto-otro-wrapper" style="display:none;">
+            <label>Nombre del proyecto</label>
+            <input type="text" id="proyecto-otro-nombre" placeholder="Escribe el nombre del proyecto" />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Unidad</div>
+        <div class="field-grid">
+          <div class="field col-3">
+            <label>Modelo</label>
+            <select>
+              <option>Loft</option>
+              <option selected>1 Cuarto</option>
+              <option>2 Cuartos</option>
+              <option>2 Cuartos Flex</option>
+              <option>3 Cuartos</option>
+            </select>
+          </div>
+          <div class="field col-3">
+            <label>ID</label>
+            <input type="text" value="Cuarto" placeholder="Ej. 401" />
+          </div>
+          <div class="field col-3">
+            <label>Nivel</label>
+            <input type="number" value="9" />
+          </div>
+          <div class="field col-3">
+            <label>Vista</label>
+            <input type="text" value="Chapultepec" />
+          </div>
+
+          <div class="field col-3 unit-suffix" data-suffix="m²">
+            <label>Interior</label>
+            <input type="number" step="0.01" value="46.14" id="m2-interior" oninput="calcularM2()" />
+          </div>
+          <div class="field col-3 unit-suffix" data-suffix="m²">
+            <label>Terraza / Balcón</label>
+            <input type="number" step="0.01" value="2.19" id="m2-terraza" oninput="calcularM2()" />
+          </div>
+          <div class="field col-3 unit-suffix" data-suffix="m²">
+            <label>Total (calculado)</label>
+            <input type="number" step="0.01" value="48.33" id="m2-total" readonly style="background:var(--trust-gray-bg)" />
+          </div>
+          <div class="field col-3">
+            <label>Recámaras</label>
+            <input type="text" value="1" />
+          </div>
+
+          <div class="field col-4">
+            <label>Baños</label>
+            <input type="text" value="1" />
+          </div>
+          <div class="field col-4">
+            <label>Estacionamiento</label>
+            <input type="text" value="1" />
+          </div>
+          <div class="field col-4">
+            <label>Bodega</label>
+            <input type="text" value="0" />
+          </div>
+
+          <div class="field col-12">
+            <label>Comentarios</label>
+            <textarea rows="3" placeholder="Notas adicionales sobre la unidad (acabados especiales, orientación, piso preferente, etc.)"></textarea>
+          </div>
+
+          <div class="field col-6 unit-prefix" data-prefix="$">
+            <label>Precio de lista</label>
+            <input type="text" value="3,278,691" id="precio-lista" oninput="calcularPrecioM2()" />
+          </div>
+          <div class="field col-6 unit-prefix" data-prefix="$">
+            <label>Precio M² de lista (calculado)</label>
+            <input type="text" value="67,840" id="precio-m2" readonly style="background:var(--trust-gray-bg)" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-nav">
+      <button class="btn btn-secondary" disabled style="opacity:0.3">
+        <span class="chevron">←</span> Atrás
+      </button>
+      <button class="btn btn-primary" onclick="goToStep(2)">
+        Continuar al cliente <span class="chevron">→</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- PANEL 2: CLIENTE -->
+  <div class="step-panel" data-panel="2">
+    <div class="card">
+      <div class="section-title">Información del cliente</div>
+      <div class="divider-accent"></div>
+      <div class="section-hint">
+        Captura los datos básicos del prospecto. El nombre es obligatorio y aparecerá en la cotización; el resto es opcional pero recomendado para darle seguimiento.
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Datos de contacto</div>
+        <div class="field-grid">
+          <div class="field col-12">
+            <label>Nombre completo *</label>
+            <input type="text" value="Francisco López" />
+          </div>
+          <div class="field col-6">
+            <label>Correo electrónico</label>
+            <input type="email" placeholder="francisco.lopez@ejemplo.com" />
+          </div>
+          <div class="field col-6">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="+52 33 1234 5678" />
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <div class="field-group-title">Broker asignado</div>
+        <div class="field-grid">
+          <div class="field col-6">
+            <label>Broker / Asesor</label>
+            <select>
+              <option selected>Equipo interno TRUST</option>
+              <option>Broker externo</option>
+            </select>
+          </div>
+          <div class="field col-6">
+            <label>Nombre del broker</label>
+            <input type="text" placeholder="Opcional" />
+          </div>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        Por el momento las cotizaciones se generan desde el equipo interno de TRUST Realtor. En una siguiente fase, los brokers externos aprobados podrán generarlas directamente desde la plataforma.
+      </div>
+    </div>
+
+    <div class="wizard-nav">
+      <button class="btn btn-secondary" onclick="goToStep(1)">
+        <span class="chevron">←</span> Atrás
+      </button>
+      <button class="btn btn-primary" onclick="goToStep(3)">
+        Continuar a políticas <span class="chevron">→</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- PANEL 3: POLÍTICAS DE PAGO -->
+  <div class="step-panel" data-panel="3">
+    <div class="card">
+      <div class="section-title">Configuración del pago</div>
+      <div class="divider-accent"></div>
+      <div class="section-hint">
+        Define el esquema de pago personalizado para este cliente. Aplica el descuento y distribuye el precio neto entre enganche, mensualidades (si aplica) y pago a la escrituración.
+      </div>
+
+      <!-- TARJETA RESUMEN DE LA UNIDAD -->
+      <div class="unit-summary-card">
+        <div class="unit-summary-left">
+          <div class="unit-summary-project">Balcana Vertical</div>
+          <div class="unit-summary-details">
+            <span>1 Cuarto</span>
+            <span class="dot">·</span>
+            <span>ID: Cuarto</span>
+            <span class="dot">·</span>
+            <span>Nivel 9</span>
+            <span class="dot">·</span>
+            <span>Vista Chapultepec</span>
+            <span class="dot">·</span>
+            <span>48.33 m²</span>
+          </div>
+        </div>
+        <div class="unit-summary-right">
+          <div class="unit-summary-label">Precio de lista</div>
+          <div class="unit-summary-price" id="resumen-precio-lista">$3,278,691</div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 1: DESCUENTO -->
+      <div class="field-group">
+        <div class="field-group-title">Descuento</div>
+        <div class="field-grid">
+          <div class="field col-4 unit-suffix" data-suffix="%">
+            <label>Descuento %</label>
+            <input type="number" step="0.01" value="0" id="desc-porcentaje" />
+          </div>
+          <div class="field col-4 unit-prefix" data-prefix="$">
+            <label>Descuento monto</label>
+            <input type="text" value="0" id="desc-monto" />
+          </div>
+          <div class="field col-4">
+            <label>Precio neto</label>
+            <div class="result-box" id="precio-neto-box">$3,278,691</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOQUE 2: ESTRUCTURA DEL PAGO -->
+      <div class="field-group">
+        <div class="field-group-title">Estructura del pago</div>
+
+        <!-- Toggle mensualidades -->
+        <div class="toggle-wrapper">
+          <label class="toggle-label">
+            <input type="checkbox" id="toggle-mensualidades" checked />
+            <span class="toggle-slider"></span>
+            <span class="toggle-text">Incluye mensualidades durante obra</span>
+          </label>
+        </div>
+
+        <!-- Tabla de estructura -->
+        <div class="payment-table">
+          <div class="pt-header">
+            <div class="pt-cell-label">Concepto</div>
+            <div class="pt-cell">Porcentaje</div>
+            <div class="pt-cell">Monto</div>
+            <div class="pt-cell">Detalle</div>
+          </div>
+
+          <!-- Enganche -->
+          <div class="pt-row">
+            <div class="pt-cell-label">Enganche</div>
+            <div class="pt-cell">
+              <div class="unit-suffix" data-suffix="%">
+                <input type="number" step="0.01" value="20" id="eng-porcentaje" class="pt-input" />
+              </div>
+            </div>
+            <div class="pt-cell">
+              <div class="unit-prefix" data-prefix="$">
+                <input type="text" value="655,738" id="eng-monto" class="pt-input" />
+              </div>
+            </div>
+            <div class="pt-cell pt-detail">Pago inicial</div>
+          </div>
+
+          <!-- Mensualidades (condicional) -->
+          <div class="pt-row pt-row-mensualidades" id="row-mensualidades">
+            <div class="pt-cell-label">Mensualidades</div>
+            <div class="pt-cell">
+              <div class="unit-suffix" data-suffix="%">
+                <input type="number" step="0.01" value="40" id="men-porcentaje" class="pt-input" />
+              </div>
+            </div>
+            <div class="pt-cell">
+              <div class="unit-prefix" data-prefix="$">
+                <input type="text" value="1,311,476" id="men-monto" class="pt-input" />
+              </div>
+            </div>
+            <div class="pt-cell pt-detail">
+              <div class="men-detalle-grid">
+                <div class="men-detalle-field">
+                  <span class="men-detalle-label">Núm.</span>
+                  <input type="number" value="18" min="1" step="1" id="men-numero" class="pt-input-small" />
+                </div>
+                <div class="men-detalle-field">
+                  <span class="men-detalle-label">c/u</span>
+                  <div class="unit-prefix" data-prefix="$">
+                    <input type="text" value="72,860" id="men-individual" class="pt-input" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- A la escrituración -->
+          <div class="pt-row">
+            <div class="pt-cell-label">A la escrituración</div>
+            <div class="pt-cell">
+              <div class="unit-suffix" data-suffix="%">
+                <input type="text" value="40" id="esc-porcentaje" class="pt-input pt-readonly" readonly />
+              </div>
+            </div>
+            <div class="pt-cell">
+              <div class="unit-prefix" data-prefix="$">
+                <input type="text" value="1,311,477" id="esc-monto" class="pt-input pt-readonly" readonly />
+              </div>
+            </div>
+            <div class="pt-cell pt-detail">Residual · calculado</div>
+          </div>
+
+          <!-- Total -->
+          <div class="pt-row pt-total-row">
+            <div class="pt-cell-label">Total</div>
+            <div class="pt-cell"><strong id="total-porcentaje">100%</strong></div>
+            <div class="pt-cell"><strong id="total-monto">$3,278,691</strong></div>
+            <div class="pt-cell pt-detail">= Precio neto</div>
+          </div>
+        </div>
+
+        <!-- Validación visual -->
+        <div class="validation-banner validation-ok" id="validation-banner">
+          <span class="val-icon">✓</span>
+          <span class="val-text">La distribución cuadra con el precio neto.</span>
+        </div>
+      </div>
+
+      <!-- TABLA DE AMORTIZACIÓN PREVIEW -->
+      <div class="field-group" id="amortizacion-wrapper">
+        <div class="field-group-title">Cronograma de pagos</div>
+        <div class="amortizacion-table" id="amortizacion-table">
+          <!-- Se llena con JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <div class="wizard-nav">
+      <button class="btn btn-secondary" onclick="goToStep(2)">
+        <span class="chevron">←</span> Atrás
+      </button>
+      <button class="btn btn-primary" id="btn-continuar-3" onclick="goToStep(4)">
+        Revisar vista previa <span class="chevron">→</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- PANEL 4: VISTA PREVIA -->
+  <div class="step-panel" data-panel="4">
+    <div class="card" style="padding:28px 32px;">
+      <div class="section-title">Vista previa de la cotización</div>
+      <div class="divider-accent"></div>
+      <div class="section-hint">
+        Revisa la cotización antes de descargarla. El PDF tendrá este mismo formato tamaño carta, listo para imprimir o compartir por WhatsApp.
+      </div>
+
+      <div class="preview-wrapper">
+        <!-- DOCUMENTO CARTA -->
+        <div class="doc-carta-scaler">
+          <div class="doc-carta" id="doc-carta">
+
+            <!-- HEADER -->
+            <div class="doc-header">
+              <div class="doc-header-brand">
+                <div class="doc-header-eyebrow">Cotización · TRUST Realtor</div>
+                <span class="doc-header-project" id="doc-proyecto">Balcana Vertical</span>
+                <span class="doc-header-project-sub" id="doc-proyecto-sub">Preventa · Guadalajara</span>
+              </div>
+              <div class="doc-header-meta">
+                <div class="meta-row">
+                  <span class="meta-label">Para</span>
+                  <span class="meta-value" id="doc-cliente">Francisco López</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Fecha</span>
+                  <span class="meta-value" id="doc-fecha">22 de abril, 2026</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Vigencia</span>
+                  <span class="meta-value" id="doc-vigencia">7 de mayo, 2026</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- HERO NUMÉRICO -->
+            <div class="doc-hero" id="doc-hero">
+              <div class="hero-block">
+                <span class="hero-label">Precio final</span>
+                <span class="hero-number big" id="doc-hero-precio">$3,278,691</span>
+                <span class="hero-subline" id="doc-hero-precio-sub">Sin descuento aplicado</span>
+              </div>
+              <div class="hero-block">
+                <span class="hero-label">Enganche</span>
+                <span class="hero-number med" id="doc-hero-enganche">$655,738</span>
+                <span class="hero-subline" id="doc-hero-enganche-sub">20% inicial</span>
+              </div>
+              <div class="hero-block" id="doc-hero-mensualidad-block">
+                <span class="hero-label">Mensualidad</span>
+                <span class="hero-number med" id="doc-hero-mensualidad">$72,860</span>
+                <span class="hero-subline" id="doc-hero-mensualidad-sub">18 pagos durante obra</span>
+              </div>
+            </div>
+
+            <!-- INFO GRID -->
+            <div class="doc-info">
+              <div>
+                <div class="doc-info-block-title">Unidad</div>
+                <div class="doc-info-row"><span class="dlabel">Modelo</span><span class="dvalue" id="doc-modelo">1 Cuarto</span></div>
+                <div class="doc-info-row"><span class="dlabel">ID</span><span class="dvalue" id="doc-id">Cuarto</span></div>
+                <div class="doc-info-row"><span class="dlabel">Nivel</span><span class="dvalue" id="doc-nivel">9</span></div>
+                <div class="doc-info-row"><span class="dlabel">Vista</span><span class="dvalue" id="doc-vista">Chapultepec</span></div>
+                <div class="doc-info-row"><span class="dlabel">Interior / Terraza</span><span class="dvalue" id="doc-m2-parcial">46.14 / 2.19 m²</span></div>
+                <div class="doc-info-row"><span class="dlabel">M² totales</span><span class="dvalue" id="doc-m2-total">48.33 m²</span></div>
+              </div>
+              <div>
+                <div class="doc-info-block-title">Detalle</div>
+                <div class="doc-info-row"><span class="dlabel">Recámaras</span><span class="dvalue" id="doc-recamaras">1</span></div>
+                <div class="doc-info-row"><span class="dlabel">Baños</span><span class="dvalue" id="doc-banos">1</span></div>
+                <div class="doc-info-row"><span class="dlabel">Estacionamiento</span><span class="dvalue" id="doc-estac">1</span></div>
+                <div class="doc-info-row"><span class="dlabel">Bodega</span><span class="dvalue" id="doc-bodega">0</span></div>
+                <div class="doc-info-row"><span class="dlabel">Precio M²</span><span class="dvalue" id="doc-precio-m2">$69,412</span></div>
+                <div class="doc-info-row"><span class="dlabel">Broker</span><span class="dvalue" id="doc-broker">Equipo interno TRUST</span></div>
+              </div>
+            </div>
+
+            <!-- DESGLOSE DEL PRECIO -->
+            <div class="doc-price-breakdown">
+              <div class="doc-section-title">Desglose del precio</div>
+              <div class="price-row">
+                <span class="price-concept">Precio de lista</span>
+                <span class="price-detail" id="doc-precio-detail-lista">Base del desarrollo</span>
+                <span class="price-amount" id="doc-precio-lista-amt">$3,278,691</span>
+              </div>
+              <div class="price-row price-discount" id="doc-row-descuento" style="display:none;">
+                <span class="price-concept">Descuento</span>
+                <span class="price-detail" id="doc-desc-pct">0%</span>
+                <span class="price-amount" id="doc-desc-amt">-$0</span>
+              </div>
+              <div class="price-row price-final">
+                <span class="price-concept">Precio final</span>
+                <span class="price-detail">El que paga el cliente</span>
+                <span class="price-amount" id="doc-precio-neto-amt">$3,278,691</span>
+              </div>
+            </div>
+
+            <!-- ESTRUCTURA DEL PAGO -->
+            <div class="doc-schedule">
+              <div class="doc-section-title">Estructura del pago</div>
+              <div class="doc-structure" id="doc-structure">
+                <div class="struct-card">
+                  <div class="struct-label">Enganche</div>
+                  <div class="struct-amount" id="doc-struct-eng-amt">$655,738</div>
+                  <div class="struct-detail"><strong id="doc-struct-eng-pct">20%</strong> del precio final · <span id="doc-struct-eng-detail">Pago inicial</span></div>
+                </div>
+                <div class="struct-card" id="doc-struct-mens-card">
+                  <div class="struct-label">Mensualidades</div>
+                  <div class="struct-amount" id="doc-struct-mens-amt">$72,860</div>
+                  <div class="struct-detail"><strong id="doc-struct-mens-num">18 pagos</strong> · <span id="doc-struct-mens-total">Total $1,311,476</span></div>
+                </div>
+                <div class="struct-card">
+                  <div class="struct-label">A la escrituración</div>
+                  <div class="struct-amount" id="doc-struct-esc-amt">$1,311,477</div>
+                  <div class="struct-detail"><strong id="doc-struct-esc-pct">40%</strong> · <span>Al entregar la unidad</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CRONOGRAMA -->
+            <div class="doc-schedule" id="doc-cronograma-wrapper">
+              <div class="doc-section-title">Cronograma de pagos</div>
+              <div class="schedule-h" id="doc-schedule-grid">
+                <!-- se llena con JS -->
+              </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="doc-footer">
+              <div class="doc-footer-notes">
+                Cotización sujeta a disponibilidad del inmueble. Los precios y descuentos están vigentes únicamente dentro del periodo indicado. Las imágenes y materiales de venta son ilustrativos.
+              </div>
+              <div class="doc-footer-brand">
+                <div class="fb-logo">TRUST<span class="realtor">realtor</span></div>
+                <div class="fb-tag">Generada desde la plataforma</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PANEL LATERAL DE ACCIONES -->
+        <div class="preview-actions">
+          <div class="action-card">
+            <h4>Lista para descargar</h4>
+            <p>Al hacer clic en "Descargar PDF" se abrirá el diálogo de impresión. Selecciona <strong>"Guardar como PDF"</strong> como destino y listo.</p>
+            <button class="action-btn" onclick="descargarPDF()">Descargar PDF <span class="arrow">↓</span></button>
+            <button class="action-btn secondary" onclick="nuevaCotizacion()">Nueva cotización <span class="arrow">↻</span></button>
+          </div>
+
+          <div class="summary-card">
+            <h5>Resumen</h5>
+            <div class="summary-line"><span class="summary-label">Proyecto</span><span class="summary-value" id="sum-proyecto">Balcana Vertical</span></div>
+            <div class="summary-line"><span class="summary-label">Unidad</span><span class="summary-value" id="sum-unidad">1 Cuarto · Cuarto</span></div>
+            <div class="summary-line"><span class="summary-label">Cliente</span><span class="summary-value" id="sum-cliente">Francisco López</span></div>
+            <div class="summary-line"><span class="summary-label">Precio final</span><span class="summary-value" id="sum-precio" style="color:var(--trust-green)">$3,278,691</span></div>
+            <div class="summary-line"><span class="summary-label">Enganche</span><span class="summary-value" id="sum-enganche">$655,738</span></div>
+            <div class="summary-line"><span class="summary-label">Mensualidades</span><span class="summary-value" id="sum-mens">18 × $72,860</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-nav">
+      <button class="btn btn-secondary" onclick="goToStep(3)">
+        <span class="chevron">←</span> Atrás
+      </button>
+      <div style="color:var(--trust-gray);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;">
+        Cotización lista · usa los botones de la derecha para descargar
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mini-footer">
+  <strong>TRUST · Realtor</strong> &nbsp; — &nbsp; Cotizador v0.1 · Prototipo visual · 22 abril 2026
+</div>
+
+<script>
+  function goToStep(n) {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`[data-panel="${n}"]`).classList.add('active');
+    document.querySelectorAll('.step').forEach((s, i) => {
+      s.classList.remove('active', 'completed');
+      if (i + 1 < n) s.classList.add('completed');
+      else if (i + 1 === n) s.classList.add('active');
+    });
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  document.querySelectorAll('.step').forEach((s, i) => {
+    s.addEventListener('click', () => goToStep(i + 1));
+  });
+
+  // Utilidad: parsear número desde un input que puede tener comas
+  function parseNum(val) {
+    if (!val) return 0;
+    const n = parseFloat(String(val).replace(/,/g, ''));
+    return isNaN(n) ? 0 : n;
+  }
+
+  // Formatear número con separador de miles
+  function formatNum(n, decimals = 0) {
+    return n.toLocaleString('en-US', {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    });
+  }
+
+  // Calcular M2 totales = interior + terraza
+  function calcularM2() {
+    const interior = parseNum(document.getElementById('m2-interior').value);
+    const terraza = parseNum(document.getElementById('m2-terraza').value);
+    const total = interior + terraza;
+    document.getElementById('m2-total').value = total.toFixed(2);
+    calcularPrecioM2(); // recalcular también el precio por m²
+  }
+
+  // Calcular Precio por M² ponderado:
+  // Base ponderada = m² interiores + (50% de m² exteriores)
+  // Precio M² = Precio de lista / Base ponderada
+  function calcularPrecioM2() {
+    const interior = parseNum(document.getElementById('m2-interior').value);
+    const terraza = parseNum(document.getElementById('m2-terraza').value);
+    const precioLista = parseNum(document.getElementById('precio-lista').value);
+
+    const baseM2 = interior + (terraza * 0.5);
+    const precioM2 = baseM2 > 0 ? precioLista / baseM2 : 0;
+
+    document.getElementById('precio-m2').value = formatNum(precioM2, 0);
+  }
+
+  // Formatear precio de lista al teclear (separador de miles)
+  document.getElementById('precio-lista').addEventListener('blur', function() {
+    const val = parseNum(this.value);
+    this.value = formatNum(val, 0);
+    calcularPrecioM2();
+  });
+
+  // Ejecutar cálculo inicial al cargar
+  document.addEventListener('DOMContentLoaded', function() {
+    calcularM2();
+    inicializarPaso3();
+  });
+
+  // Interceptar goToStep para renderizar la cotización en el paso 4
+  const _origGoToStep = goToStep;
+  goToStep = function(n) {
+    _origGoToStep(n);
+    if (n === 4) {
+      renderizarCotizacion();
+    }
+  };
+
+  // === RENDERIZAR COTIZACIÓN (PASO 4) ==================================
+
+  function obtenerFechaHoy() {
+    const d = new Date();
+    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    return `${d.getDate()} de ${meses[d.getMonth()]}, ${d.getFullYear()}`;
+  }
+
+  function obtenerFechaVigencia(dias) {
+    const d = new Date();
+    d.setDate(d.getDate() + dias);
+    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    return `${d.getDate()} de ${meses[d.getMonth()]}, ${d.getFullYear()}`;
+  }
+
+  function safeTextOrDash(v) {
+    if (v === null || v === undefined || String(v).trim() === '') return '—';
+    return v;
+  }
+
+  function renderizarCotizacion() {
+    // Helper: leer el valor de un input/select/textarea cuyo label contiene el texto
+    function valPorLabel(panel, labelText) {
+      const labels = panel.querySelectorAll('label');
+      for (const lbl of labels) {
+        if (lbl.textContent.trim().toLowerCase() === labelText.toLowerCase()) {
+          const inp = lbl.parentElement.querySelector('input, select, textarea');
+          if (inp) return inp.value;
+        }
+      }
+      return '';
+    }
+
+    const panel1 = document.querySelector('[data-panel="1"]');
+    const panel2 = document.querySelector('[data-panel="2"]');
+
+    // ------ 1. Datos del paso 1 (proyecto y unidad) ------
+    const selectorProyecto = document.getElementById('selector-proyecto');
+    let proyecto = selectorProyecto.value;
+    if (proyecto === 'Otro') {
+      const custom = document.getElementById('proyecto-otro-nombre').value.trim();
+      proyecto = custom || 'Proyecto sin definir';
+    }
+    const tipoProducto = valPorLabel(panel1, 'Tipo de producto') || 'Preventa';
+    const modelo = valPorLabel(panel1, 'Modelo') || '';
+    const idUnidad = valPorLabel(panel1, 'ID');
+    const nivel = valPorLabel(panel1, 'Nivel');
+    const vista = valPorLabel(panel1, 'Vista');
+    const mInterior = parseNum(document.getElementById('m2-interior').value);
+    const mTerraza = parseNum(document.getElementById('m2-terraza').value);
+    const mTotal = parseNum(document.getElementById('m2-total').value);
+    const recamaras = valPorLabel(panel1, 'Recámaras');
+    const banos = valPorLabel(panel1, 'Baños');
+    const estacionamiento = valPorLabel(panel1, 'Estacionamiento');
+    const bodega = valPorLabel(panel1, 'Bodega');
+    const precioM2 = document.getElementById('precio-m2').value;
+
+    // ------ 2. Datos del paso 2 (cliente y broker) ------
+    const nombreCliente = valPorLabel(panel2, 'Nombre completo *') || 'Cliente sin definir';
+    const brokerTipo = valPorLabel(panel2, 'Broker / Asesor') || 'Equipo interno TRUST';
+    const brokerNombre = valPorLabel(panel2, 'Nombre del broker');
+    const brokerLabel = brokerNombre ? `${brokerTipo} · ${brokerNombre}` : brokerTipo;
+
+    // ------ 3. Datos del paso 3 (estructura de pago) ------
+    // Ya están en estadoPago (objeto global del paso 3)
+    const incluyeMens = estadoPago.incluyeMensualidades;
+
+    // ------ Subtítulo del proyecto ------
+    const proyectoSub = `${tipoProducto} · Guadalajara`;
+
+    // ------ Rellenar header ------
+    document.getElementById('doc-proyecto').textContent = proyecto;
+    document.getElementById('doc-proyecto-sub').textContent = proyectoSub;
+    document.getElementById('doc-cliente').textContent = nombreCliente;
+    document.getElementById('doc-fecha').textContent = obtenerFechaHoy();
+    document.getElementById('doc-vigencia').textContent = obtenerFechaVigencia(15);
+
+    // ------ Rellenar hero numérico ------
+    document.getElementById('doc-hero-precio').textContent = '$' + formatNum(estadoPago.precioNeto, 0);
+    const descMostrar = estadoPago.descuentoPct > 0
+      ? `Con descuento del ${(Math.round(estadoPago.descuentoPct * 100) / 100)}% aplicado`
+      : 'Sin descuento aplicado';
+    document.getElementById('doc-hero-precio-sub').textContent = descMostrar;
+
+    document.getElementById('doc-hero-enganche').textContent = '$' + formatNum(estadoPago.engMonto, 0);
+    document.getElementById('doc-hero-enganche-sub').textContent = `${(Math.round(estadoPago.engPct * 100) / 100)}% inicial`;
+
+    const heroEl = document.getElementById('doc-hero');
+    const mensBlock = document.getElementById('doc-hero-mensualidad-block');
+    if (incluyeMens) {
+      heroEl.classList.remove('hero-contado');
+      mensBlock.style.display = '';
+      document.getElementById('doc-hero-mensualidad').textContent = '$' + formatNum(estadoPago.menIndividual, 0);
+      document.getElementById('doc-hero-mensualidad-sub').textContent = `${estadoPago.menNumero} pagos durante obra`;
+    } else {
+      heroEl.classList.add('hero-contado');
+      mensBlock.style.display = 'none';
+    }
+
+    // ------ Rellenar info grid ------
+    document.getElementById('doc-modelo').textContent = modelo;
+    document.getElementById('doc-id').textContent = safeTextOrDash(idUnidad);
+    document.getElementById('doc-nivel').textContent = safeTextOrDash(nivel);
+    document.getElementById('doc-vista').textContent = safeTextOrDash(vista);
+    document.getElementById('doc-m2-parcial').textContent = `${mInterior.toFixed(2)} / ${mTerraza.toFixed(2)} m²`;
+    document.getElementById('doc-m2-total').textContent = `${mTotal.toFixed(2)} m²`;
+    document.getElementById('doc-recamaras').textContent = safeTextOrDash(recamaras);
+    document.getElementById('doc-banos').textContent = safeTextOrDash(banos);
+    document.getElementById('doc-estac').textContent = safeTextOrDash(estacionamiento);
+    document.getElementById('doc-bodega').textContent = safeTextOrDash(bodega);
+    document.getElementById('doc-precio-m2').textContent = '$' + precioM2;
+    document.getElementById('doc-broker').textContent = brokerLabel;
+
+    // ------ Rellenar desglose del precio ------
+    document.getElementById('doc-precio-lista-amt').textContent = '$' + formatNum(estadoPago.precioLista, 0);
+
+    const rowDesc = document.getElementById('doc-row-descuento');
+    if (estadoPago.descuentoMonto > 0) {
+      rowDesc.style.display = '';
+      document.getElementById('doc-desc-pct').textContent = `${(Math.round(estadoPago.descuentoPct * 100) / 100)}% sobre precio de lista`;
+      document.getElementById('doc-desc-amt').textContent = '-$' + formatNum(estadoPago.descuentoMonto, 0);
+    } else {
+      rowDesc.style.display = 'none';
+    }
+    document.getElementById('doc-precio-neto-amt').textContent = '$' + formatNum(estadoPago.precioNeto, 0);
+
+    // ------ Rellenar estructura del pago (3 cards) ------
+    const structEl = document.getElementById('doc-structure');
+    const mensCard = document.getElementById('doc-struct-mens-card');
+
+    document.getElementById('doc-struct-eng-amt').textContent = '$' + formatNum(estadoPago.engMonto, 0);
+    document.getElementById('doc-struct-eng-pct').textContent = `${(Math.round(estadoPago.engPct * 100) / 100)}%`;
+    document.getElementById('doc-struct-eng-detail').textContent = 'Pago inicial';
+
+    if (incluyeMens) {
+      structEl.classList.remove('structure-2');
+      mensCard.style.display = '';
+      document.getElementById('doc-struct-mens-amt').textContent = '$' + formatNum(estadoPago.menIndividual, 0);
+      document.getElementById('doc-struct-mens-num').textContent = `${estadoPago.menNumero} pagos`;
+      document.getElementById('doc-struct-mens-total').textContent = `Total $${formatNum(estadoPago.menMonto, 0)}`;
+    } else {
+      structEl.classList.add('structure-2');
+      mensCard.style.display = 'none';
+    }
+
+    // Escrituración absorbe el residual de redondeo de mensualidades
+    const residualMens = incluyeMens ? (estadoPago.menMonto - estadoPago.menIndividual * estadoPago.menNumero) : 0;
+    const escFinal = estadoPago.escMonto + residualMens;
+    document.getElementById('doc-struct-esc-amt').textContent = '$' + formatNum(escFinal, 0);
+    const escPctMostrar = estadoPago.precioNeto > 0 ? (escFinal / estadoPago.precioNeto) * 100 : 0;
+    document.getElementById('doc-struct-esc-pct').textContent = `${(Math.round(escPctMostrar * 100) / 100)}%`;
+
+    // ------ Cronograma horizontal ------
+    const cronogramaWrapper = document.getElementById('doc-cronograma-wrapper');
+    const schedGrid = document.getElementById('doc-schedule-grid');
+
+    // Construir array de pagos
+    const pagos = [];
+    pagos.push({ label: 'Enganche', monto: estadoPago.engMonto, key: true });
+
+    if (incluyeMens) {
+      for (let i = 1; i <= estadoPago.menNumero; i++) {
+        pagos.push({ label: `Mes ${i}`, monto: estadoPago.menIndividual, key: false });
+      }
+    }
+
+    pagos.push({ label: 'Escrituración', monto: escFinal, key: true });
+
+    // Determinar columnas por fila para que las filas queden balanceadas.
+    // Buscamos un layout compacto que mantenga las celdas legibles.
+    const totalPagos = pagos.length;
+    let cols;
+    if (totalPagos <= 6) {
+      cols = totalPagos;          // 1 fila
+    } else if (totalPagos <= 12) {
+      cols = Math.ceil(totalPagos / 2);  // 2 filas
+    } else if (totalPagos <= 20) {
+      cols = 5;                   // hasta 4 filas de 5 (cabe 18 mens + enganche + esc = 20)
+    } else if (totalPagos <= 30) {
+      cols = 5;                   // hasta 6 filas de 5 (cabe 24 mens + enganche + esc = 26)
+    } else {
+      cols = 6;                   // proyectos largos: 6 cols, 7+ filas
+    }
+
+    // Aplicar grid-template-columns dinámico
+    schedGrid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+
+    // Calcular en qué fila está cada celda para identificar la última fila
+    const totalRows = Math.ceil(totalPagos / cols);
+
+    let html = '';
+    pagos.forEach((p, idx) => {
+      const row = Math.floor(idx / cols) + 1;
+      const isLastRow = row === totalRows;
+      const classes = ['sh-cell'];
+      if (p.key) classes.push('sh-key');
+      if (isLastRow) classes.push('sh-last-row');
+      html += `<div class="${classes.join(' ')}">
+        <span class="sh-label">${p.label}</span>
+        <span class="sh-amount">$${formatNum(p.monto, 0)}</span>
+      </div>`;
+    });
+
+    // Llenar celdas vacías al final para mantener el grid balanceado visualmente
+    const celdasVacias = (totalRows * cols) - totalPagos;
+    for (let i = 0; i < celdasVacias; i++) {
+      html += '<div class="sh-cell sh-empty sh-last-row"></div>';
+    }
+
+    schedGrid.innerHTML = html;
+    cronogramaWrapper.style.display = '';
+
+    // ------ Sidebar resumen ------
+    document.getElementById('sum-proyecto').textContent = proyecto;
+    document.getElementById('sum-unidad').textContent = `${modelo} · ${safeTextOrDash(idUnidad)}`;
+    document.getElementById('sum-cliente').textContent = nombreCliente;
+    document.getElementById('sum-precio').textContent = '$' + formatNum(estadoPago.precioNeto, 0);
+    document.getElementById('sum-enganche').textContent = '$' + formatNum(estadoPago.engMonto, 0);
+    const sumMens = document.getElementById('sum-mens');
+    if (incluyeMens) {
+      sumMens.textContent = `${estadoPago.menNumero} × $${formatNum(estadoPago.menIndividual, 0)}`;
+    } else {
+      sumMens.textContent = 'No aplica';
+    }
+
+    // Guardar datos para nombre del PDF
+    window._cotizacionData = {
+      proyecto: proyecto,
+      cliente: nombreCliente,
+      fecha: new Date()
+    };
+  }
+
+  // === DESCARGAR PDF ===================================================
+
+  function normalizarNombreArchivo(texto) {
+    return String(texto || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-zA-Z0-9]+/g, '')
+      .substring(0, 40);
+  }
+
+  function descargarPDF() {
+    const data = window._cotizacionData || { proyecto: 'Cotizacion', cliente: 'Cliente', fecha: new Date() };
+    const d = data.fecha;
+    const fechaStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    const proyectoSlug = normalizarNombreArchivo(data.proyecto);
+    const clienteSlug = normalizarNombreArchivo(data.cliente);
+    const filename = `TRUST-Cotizacion-${proyectoSlug}-${clienteSlug}-${fechaStr}`;
+
+    // Establecer el título del documento para que el navegador lo use
+    // como nombre por defecto al guardar el PDF
+    const tituloOriginal = document.title;
+    document.title = filename;
+
+    // Marcar el body con una clase para que el CSS @media print sepa
+    // que estamos en modo "exportación" (oculta todo excepto el documento)
+    document.body.classList.add('printing-quote');
+
+    // Lanzar el diálogo de impresión nativo del navegador.
+    // El usuario seleccionará "Guardar como PDF" como destino.
+    window.print();
+
+    // Restaurar al volver del diálogo
+    setTimeout(() => {
+      document.title = tituloOriginal;
+      document.body.classList.remove('printing-quote');
+    }, 500);
+  }
+
+  // === NUEVA COTIZACIÓN ================================================
+
+  function nuevaCotizacion() {
+    if (!confirm('¿Iniciar una nueva cotización? Se perderán los datos actuales.')) return;
+    // Recargar la página (manera más confiable de limpiar todo)
+    window.location.reload();
+  }
+
+  // =========================================================================
+  // PASO 3 — CONFIGURACIÓN DE PAGO
+  // =========================================================================
+
+  // Estado central del paso 3
+  const estadoPago = {
+    precioLista: 3278691,
+    descuentoPct: 0,
+    descuentoMonto: 0,
+    precioNeto: 3278691,
+    incluyeMensualidades: true,
+    engPct: 20,
+    engMonto: 0,
+    menPct: 40,
+    menMonto: 0,
+    menNumero: 18,
+    menIndividual: 0,
+    escPct: 0,
+    escMonto: 0
+  };
+
+  // Lee un número desde un input (string con formato "1,234.56" o "1234")
+  function leerNum(id) {
+    const el = document.getElementById(id);
+    if (!el) return 0;
+    return parseNum(el.value);
+  }
+
+  // Pone un valor formateado como moneda en un input
+  function setMoneda(id, valor) {
+    const el = document.getElementById(id);
+    if (el) el.value = formatNum(Math.round(valor), 0);
+  }
+
+  // Pone un valor porcentual en un input (2 decimales)
+  function setPorcentaje(id, valor) {
+    const el = document.getElementById(id);
+    if (el) el.value = (Math.round(valor * 100) / 100).toString();
+  }
+
+  function setTexto(id, texto) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = texto;
+  }
+
+  // Calcula todo a partir del estado actual y refresca la UI
+  function recalcularPaso3() {
+    // 1. Tomar precio de lista del paso 1
+    estadoPago.precioLista = parseNum(document.getElementById('precio-lista').value);
+    setTexto('resumen-precio-lista', '$' + formatNum(estadoPago.precioLista, 0));
+
+    // 2. Precio neto = precio lista - descuento
+    estadoPago.precioNeto = estadoPago.precioLista - estadoPago.descuentoMonto;
+    if (estadoPago.precioNeto < 0) estadoPago.precioNeto = 0;
+    setTexto('precio-neto-box', '$' + formatNum(estadoPago.precioNeto, 0));
+
+    // 3. Distribuir los montos/% de enganche, mensualidades y escrituración
+    // Los % siempre son sobre precio neto.
+
+    // El enganche y las mensualidades vienen del input del usuario (ya procesados)
+    // La escrituración es el residual = precio neto - enganche - mensualidades
+    const incluyeMens = estadoPago.incluyeMensualidades;
+
+    estadoPago.escMonto = estadoPago.precioNeto - estadoPago.engMonto - (incluyeMens ? estadoPago.menMonto : 0);
+    estadoPago.escPct = estadoPago.precioNeto > 0 ? (estadoPago.escMonto / estadoPago.precioNeto) * 100 : 0;
+
+    // Actualizar UI escrituración
+    setPorcentaje('esc-porcentaje', estadoPago.escPct);
+    setMoneda('esc-monto', estadoPago.escMonto);
+
+    // Calcular mensualidad individual (si aplica)
+    if (incluyeMens && estadoPago.menNumero > 0) {
+      estadoPago.menIndividual = Math.round(estadoPago.menMonto / estadoPago.menNumero);
+    } else {
+      estadoPago.menIndividual = 0;
+    }
+    setMoneda('men-individual', estadoPago.menIndividual);
+
+    // Calcular totales para validar
+    const totalPct = estadoPago.engPct + (incluyeMens ? estadoPago.menPct : 0) + estadoPago.escPct;
+    const totalMonto = estadoPago.engMonto + (incluyeMens ? estadoPago.menMonto : 0) + estadoPago.escMonto;
+
+    setTexto('total-porcentaje', (Math.round(totalPct * 100) / 100).toFixed(2).replace(/\.?0+$/, '') + '%');
+    setTexto('total-monto', '$' + formatNum(Math.round(totalMonto), 0));
+
+    // Validación
+    validarPaso3();
+
+    // Renderizar tabla de amortización
+    renderizarAmortizacion();
+  }
+
+  function validarPaso3() {
+    const banner = document.getElementById('validation-banner');
+    const btn = document.getElementById('btn-continuar-3');
+
+    const errores = [];
+
+    if (estadoPago.descuentoPct < 0 || estadoPago.descuentoPct > 100) {
+      errores.push('El descuento debe estar entre 0% y 100%.');
+    }
+
+    if (estadoPago.engPct < 0 || estadoPago.engPct > 100) {
+      errores.push('El enganche no puede ser negativo ni mayor al precio neto.');
+    }
+
+    if (estadoPago.incluyeMensualidades && estadoPago.menPct < 0) {
+      errores.push('El % de mensualidades no puede ser negativo.');
+    }
+
+    if (estadoPago.incluyeMensualidades && estadoPago.menNumero < 1) {
+      errores.push('Ingresa un número de mensualidades válido.');
+    }
+
+    if (estadoPago.escMonto < 0) {
+      errores.push('La suma de enganche + mensualidades excede el precio neto.');
+    }
+
+    if (estadoPago.escPct > 100.01) {
+      errores.push('La distribución del pago excede el 100%.');
+    }
+
+    if (errores.length === 0) {
+      banner.className = 'validation-banner validation-ok';
+      banner.querySelector('.val-icon').textContent = '✓';
+      banner.querySelector('.val-text').textContent = 'La distribución cuadra con el precio neto.';
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.style.cursor = 'pointer';
+    } else {
+      banner.className = 'validation-banner validation-error';
+      banner.querySelector('.val-icon').textContent = '!';
+      banner.querySelector('.val-text').textContent = errores[0];
+      btn.disabled = true;
+      btn.style.opacity = '0.4';
+      btn.style.cursor = 'not-allowed';
+    }
+  }
+
+  // Interceptar clicks en "Continuar" si está deshabilitado
+  function intentarAvanzarPaso3() {
+    const btn = document.getElementById('btn-continuar-3');
+    if (btn.disabled) return false;
+    goToStep(4);
+    return true;
+  }
+
+  // --- Handlers de inputs ---
+
+  // Descuento %
+  function onDescPctChange() {
+    estadoPago.descuentoPct = leerNum('desc-porcentaje');
+    estadoPago.descuentoMonto = Math.round(estadoPago.precioLista * estadoPago.descuentoPct / 100);
+    setMoneda('desc-monto', estadoPago.descuentoMonto);
+    // Como cambió el precio neto, recalcular enganche/mensualidades/esc manteniendo sus % sobre el nuevo neto
+    actualizarMontosDesdePctSobreNeto();
+    recalcularPaso3();
+  }
+
+  // Descuento monto
+  function onDescMontoChange() {
+    estadoPago.descuentoMonto = leerNum('desc-monto');
+    if (estadoPago.precioLista > 0) {
+      estadoPago.descuentoPct = (estadoPago.descuentoMonto / estadoPago.precioLista) * 100;
+    }
+    setPorcentaje('desc-porcentaje', estadoPago.descuentoPct);
+    actualizarMontosDesdePctSobreNeto();
+    recalcularPaso3();
+  }
+
+  // Helper: cuando cambia el precio neto, recalculamos los montos
+  // de enganche y mensualidades manteniendo sus porcentajes
+  function actualizarMontosDesdePctSobreNeto() {
+    const neto = estadoPago.precioLista - estadoPago.descuentoMonto;
+    estadoPago.engMonto = Math.round(neto * estadoPago.engPct / 100);
+    if (estadoPago.incluyeMensualidades) {
+      estadoPago.menMonto = Math.round(neto * estadoPago.menPct / 100);
+    }
+    setMoneda('eng-monto', estadoPago.engMonto);
+    if (estadoPago.incluyeMensualidades) setMoneda('men-monto', estadoPago.menMonto);
+  }
+
+  // Enganche %
+  function onEngPctChange() {
+    estadoPago.engPct = leerNum('eng-porcentaje');
+    estadoPago.engMonto = Math.round(estadoPago.precioNeto * estadoPago.engPct / 100);
+    setMoneda('eng-monto', estadoPago.engMonto);
+    recalcularPaso3();
+  }
+
+  // Enganche monto
+  function onEngMontoChange() {
+    estadoPago.engMonto = leerNum('eng-monto');
+    estadoPago.engPct = estadoPago.precioNeto > 0 ? (estadoPago.engMonto / estadoPago.precioNeto) * 100 : 0;
+    setPorcentaje('eng-porcentaje', estadoPago.engPct);
+    recalcularPaso3();
+  }
+
+  // Mensualidades %
+  function onMenPctChange() {
+    estadoPago.menPct = leerNum('men-porcentaje');
+    estadoPago.menMonto = Math.round(estadoPago.precioNeto * estadoPago.menPct / 100);
+    setMoneda('men-monto', estadoPago.menMonto);
+    recalcularPaso3();
+  }
+
+  // Mensualidades monto total
+  function onMenMontoChange() {
+    estadoPago.menMonto = leerNum('men-monto');
+    estadoPago.menPct = estadoPago.precioNeto > 0 ? (estadoPago.menMonto / estadoPago.precioNeto) * 100 : 0;
+    setPorcentaje('men-porcentaje', estadoPago.menPct);
+    recalcularPaso3();
+  }
+
+  // Número de mensualidades (siempre entero)
+  function onMenNumeroChange() {
+    const input = document.getElementById('men-numero');
+    let val = parseInt(input.value, 10);
+    if (isNaN(val) || val < 1) val = 1;
+    // Forzar valor entero en el input también (por si pegaron 18.5)
+    if (String(input.value) !== String(val)) {
+      input.value = val;
+    }
+    estadoPago.menNumero = val;
+    recalcularPaso3();
+  }
+
+  // Mensualidad individual (bidireccional)
+  function onMenIndividualChange() {
+    const mensualidadInd = leerNum('men-individual');
+    if (estadoPago.menNumero > 0) {
+      estadoPago.menMonto = mensualidadInd * estadoPago.menNumero;
+      estadoPago.menPct = estadoPago.precioNeto > 0 ? (estadoPago.menMonto / estadoPago.precioNeto) * 100 : 0;
+      setMoneda('men-monto', estadoPago.menMonto);
+      setPorcentaje('men-porcentaje', estadoPago.menPct);
+    }
+    recalcularPaso3();
+  }
+
+  // Toggle mensualidades on/off
+  function onToggleMensualidades() {
+    estadoPago.incluyeMensualidades = document.getElementById('toggle-mensualidades').checked;
+    const row = document.getElementById('row-mensualidades');
+    const wrapper = document.getElementById('amortizacion-wrapper');
+
+    if (estadoPago.incluyeMensualidades) {
+      row.classList.remove('hidden');
+      wrapper.style.display = '';
+      // Restaurar % default si está en 0
+      if (estadoPago.menPct === 0) {
+        estadoPago.menPct = 40;
+        setPorcentaje('men-porcentaje', estadoPago.menPct);
+        estadoPago.menMonto = Math.round(estadoPago.precioNeto * 0.4);
+        setMoneda('men-monto', estadoPago.menMonto);
+      }
+    } else {
+      row.classList.add('hidden');
+      estadoPago.menPct = 0;
+      estadoPago.menMonto = 0;
+      estadoPago.menIndividual = 0;
+    }
+    recalcularPaso3();
+  }
+
+  // Renderizar tabla de amortización
+  function renderizarAmortizacion() {
+    const cont = document.getElementById('amortizacion-table');
+    const wrapper = document.getElementById('amortizacion-wrapper');
+
+    if (!estadoPago.incluyeMensualidades) {
+      wrapper.style.display = 'none';
+      return;
+    }
+    wrapper.style.display = '';
+
+    const pagos = [];
+    pagos.push({
+      num: '—',
+      concepto: 'Enganche',
+      monto: estadoPago.engMonto,
+      tipo: 'enganche'
+    });
+
+    const mensualidadRedondeada = estadoPago.menIndividual;
+    const totalDesdeMensualidades = mensualidadRedondeada * estadoPago.menNumero;
+    // Residual que absorberá A la escrituración
+    const residualMensualidades = estadoPago.menMonto - totalDesdeMensualidades;
+
+    for (let i = 1; i <= estadoPago.menNumero; i++) {
+      pagos.push({
+        num: i,
+        concepto: 'Mensualidad ' + i,
+        monto: mensualidadRedondeada,
+        tipo: 'mensualidad'
+      });
+    }
+
+    // La escrituración absorbe el residual de las mensualidades redondeadas
+    const escFinal = estadoPago.escMonto + residualMensualidades;
+    pagos.push({
+      num: '—',
+      concepto: 'A la escrituración',
+      monto: escFinal,
+      tipo: 'entrega'
+    });
+
+    let html = '<div class="am-row am-header"><div class="am-cell">#</div><div class="am-cell">Concepto</div><div class="am-cell am-right">Monto</div><div class="am-cell am-right">Acumulado</div></div>';
+
+    let acumulado = 0;
+    pagos.forEach(p => {
+      acumulado += p.monto;
+      html += `<div class="am-row am-${p.tipo}">
+        <div class="am-cell">${p.num}</div>
+        <div class="am-cell">${p.concepto}</div>
+        <div class="am-cell am-right">$${formatNum(p.monto, 0)}</div>
+        <div class="am-cell am-right">$${formatNum(acumulado, 0)}</div>
+      </div>`;
+    });
+
+    cont.innerHTML = html;
+  }
+
+  // Inicializar paso 3: hooking de eventos y cálculo inicial
+  function inicializarPaso3() {
+    // Handlers
+    document.getElementById('desc-porcentaje').addEventListener('input', onDescPctChange);
+    document.getElementById('desc-monto').addEventListener('input', onDescMontoChange);
+    document.getElementById('desc-monto').addEventListener('blur', function(){
+      this.value = formatNum(leerNum('desc-monto'), 0);
+    });
+
+    document.getElementById('eng-porcentaje').addEventListener('input', onEngPctChange);
+    document.getElementById('eng-monto').addEventListener('input', onEngMontoChange);
+    document.getElementById('eng-monto').addEventListener('blur', function(){
+      this.value = formatNum(leerNum('eng-monto'), 0);
+    });
+
+    document.getElementById('men-porcentaje').addEventListener('input', onMenPctChange);
+    document.getElementById('men-monto').addEventListener('input', onMenMontoChange);
+    document.getElementById('men-monto').addEventListener('blur', function(){
+      this.value = formatNum(leerNum('men-monto'), 0);
+    });
+    document.getElementById('men-numero').addEventListener('input', onMenNumeroChange);
+    document.getElementById('men-individual').addEventListener('input', onMenIndividualChange);
+    document.getElementById('men-individual').addEventListener('blur', function(){
+      this.value = formatNum(leerNum('men-individual'), 0);
+    });
+
+    document.getElementById('toggle-mensualidades').addEventListener('change', onToggleMensualidades);
+
+    // Interceptar el botón Continuar para no permitir avanzar con error
+    const btn = document.getElementById('btn-continuar-3');
+    btn.onclick = function(e) {
+      if (btn.disabled) { e.preventDefault(); return false; }
+      goToStep(4);
+    };
+
+    // Calcular valores iniciales a partir del estado inicial
+    // Primero leer el precio de lista
+    estadoPago.precioLista = parseNum(document.getElementById('precio-lista').value);
+    // Descuento inicial = 0
+    estadoPago.descuentoPct = 0;
+    estadoPago.descuentoMonto = 0;
+    estadoPago.precioNeto = estadoPago.precioLista;
+    // Enganche 20%, Mensualidades 40%
+    estadoPago.engPct = 20;
+    estadoPago.engMonto = Math.round(estadoPago.precioNeto * 0.2);
+    estadoPago.menPct = 40;
+    estadoPago.menMonto = Math.round(estadoPago.precioNeto * 0.4);
+    estadoPago.menNumero = 18;
+
+    setPorcentaje('desc-porcentaje', 0);
+    setMoneda('desc-monto', 0);
+    setPorcentaje('eng-porcentaje', 20);
+    setMoneda('eng-monto', estadoPago.engMonto);
+    setPorcentaje('men-porcentaje', 40);
+    setMoneda('men-monto', estadoPago.menMonto);
+
+    recalcularPaso3();
+  }
+</script>
+
+</body>
+</html>
