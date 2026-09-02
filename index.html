@@ -2259,6 +2259,147 @@
     text-transform: uppercase;
   }
 
+  /* ---- Pantalla de entrada: selección de asesor ---- */
+  .gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #173F35;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .gate.gate-oculta { display: none; }
+  .gate-inner {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+  }
+  .gate-brand {
+    margin-bottom: 40px;
+  }
+  .gate-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #FFFFFF;
+  }
+  .gate-realtor {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.65);
+    margin-left: 10px;
+    text-transform: lowercase;
+  }
+  .gate-title {
+    font-family: 'Georgia', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.2;
+  }
+  .gate-title em {
+    font-style: italic;
+    color: #FAF8F3;
+  }
+  .gate-sub {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    margin: 14px 0 36px;
+  }
+  .gate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .gate-btn {
+    padding: 18px 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    font-size: 19px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .gate-btn:hover {
+    background: #FAF8F3;
+    color: #173F35;
+    border-color: #FAF8F3;
+  }
+  .gate-btn.gate-btn-ultimo {
+    background: #FAF8F3;
+    color: #173F35;
+    border-color: #FAF8F3;
+  }
+  .gate-btn .gate-ultimo-tag {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-top: 4px;
+  }
+  .gate-btn.gate-btn-otro {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .gate-btn.gate-btn-otro:hover { color: #173F35; }
+  .gate-otro {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .gate-otro input {
+    flex: 1;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.95);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    color: #173F35;
+    outline: none;
+  }
+  .gate-otro input::placeholder { color: #97999B; font-style: italic; }
+  .gate-otro-entrar {
+    padding: 14px 24px;
+    background: #FAF8F3;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #173F35;
+    cursor: pointer;
+  }
+  @media (max-width: 480px) {
+    .gate-title { font-size: 26px; }
+    .gate-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .gate-btn { padding: 15px 8px; font-size: 17px; }
+  }
+  @media print {
+    .gate { display: none !important; }
+  }
+
   /* ---- Selector de asesor (topbar) ---- */
   .asesor-label {
     font-family: 'Montserrat', sans-serif;
@@ -2528,6 +2669,24 @@
 </head>
 <body>
 
+<!-- PANTALLA DE ENTRADA: SELECCIÓN DE ASESOR -->
+<div class="gate" id="gate-asesor">
+  <div class="gate-inner">
+    <div class="gate-brand">
+      <span class="gate-logo">TRUST</span><span class="gate-realtor">realtor</span>
+    </div>
+    <div class="gate-title">¿Quién va a <em>cotizar</em> hoy?</div>
+    <div class="gate-sub">Selecciona tu nombre para continuar</div>
+    <div class="gate-grid" id="gate-grid">
+      <!-- botones generados por JS -->
+    </div>
+    <div class="gate-otro" id="gate-otro-wrapper" style="display:none;">
+      <input type="text" id="gate-otro-nombre" placeholder="Escribe tu nombre" maxlength="30" />
+      <button type="button" class="gate-otro-entrar" id="gate-otro-entrar">Entrar</button>
+    </div>
+  </div>
+</div>
+
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="brand">
@@ -2543,12 +2702,12 @@
       <option>Álvaro</option>
       <option>Rodrigo</option>
       <option>Majo</option>
-      <option>Paco</option>
       <option>Fanny</option>
       <option>María</option>
       <option>Carlos</option>
       <option>Ana Lu</option>
       <option>Paola</option>
+      <option>Ramsés</option>
     </select>
     <div class="user-avatar">A</div>
   </div>
@@ -2564,7 +2723,7 @@
     </div>
     <div class="wizard-meta">
       Fecha
-      <strong>22 de abril, 2026</strong>
+      <strong id="fecha-header">—</strong>
     </div>
   </div>
 
@@ -2774,7 +2933,7 @@
           </div>
           <div class="field col-6">
             <label>Nombre del broker</label>
-            <input type="text" placeholder="Opcional" />
+            <input type="text" id="broker-nombre" placeholder="Opcional" />
           </div>
         </div>
       </div>
@@ -3725,13 +3884,104 @@
   const REGISTRO_URL = 'https://script.google.com/macros/s/AKfycbxl2aQU6QvWeMNyZaERtbQshI9DKn8RwI7JBY_g6DCvaQyw-GWVgtLo3bGVn7mEnBcW/exec';
 
   // --- Identidad del asesor (persistida en el dispositivo) ---
+  const EQUIPO_ASESORES = ['Álvaro', 'Rodrigo', 'Majo', 'Fanny', 'María', 'Carlos', 'Ana Lu', 'Paola', 'Ramsés'];
+
   function inicializarAsesor() {
     const sel = document.getElementById('asesor-activo');
     const guardado = localStorage.getItem('trust_asesor');
-    if (guardado) sel.value = guardado;
+
+    // Autollenar "Nombre del broker" (Paso 2) con la identidad activa,
+    // sin pisar un nombre que el asesor haya escrito a mano.
+    function aplicarIdentidadEnBroker(nombre) {
+      const inp = document.getElementById('broker-nombre');
+      if (!inp) return;
+      const actual = inp.value.trim();
+      const ultimaAuto = inp.dataset.autofill || '';
+      if (actual === '' || actual === ultimaAuto) {
+        inp.value = nombre;
+        inp.dataset.autofill = nombre;
+      }
+    }
+
+    // Si el guardado es un nombre libre (no del equipo), agregarlo al dropdown
+    function asegurarOpcion(nombre) {
+      if (![...sel.options].some(o => o.value === nombre)) {
+        const opt = document.createElement('option');
+        opt.textContent = nombre;
+        sel.appendChild(opt);
+      }
+    }
+    if (guardado) {
+      asegurarOpcion(guardado);
+      sel.value = guardado;
+      aplicarIdentidadEnBroker(guardado);
+    }
     sel.addEventListener('change', function() {
       localStorage.setItem('trust_asesor', sel.value);
       sel.classList.remove('asesor-pendiente');
+      if (sel.value) aplicarIdentidadEnBroker(sel.value);
+    });
+
+    // Entrar con un nombre (equipo o libre)
+    function entrarComo(nombre) {
+      localStorage.setItem('trust_asesor', nombre);
+      asegurarOpcion(nombre);
+      sel.value = nombre;
+      sel.classList.remove('asesor-pendiente');
+      aplicarIdentidadEnBroker(nombre);
+      document.getElementById('gate-asesor').classList.add('gate-oculta');
+    }
+
+    // Construir la pantalla de entrada
+    const grid = document.getElementById('gate-grid');
+    EQUIPO_ASESORES.forEach(function(nombre) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gate-btn';
+      if (guardado === nombre) {
+        btn.classList.add('gate-btn-ultimo');
+        btn.innerHTML = nombre + '<span class="gate-ultimo-tag">La última vez</span>';
+      } else {
+        btn.textContent = nombre;
+      }
+      btn.addEventListener('click', function() { entrarComo(nombre); });
+      grid.appendChild(btn);
+    });
+
+    // Si la última vez entró con nombre libre, mostrarlo como botón destacado
+    if (guardado && !EQUIPO_ASESORES.includes(guardado)) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gate-btn gate-btn-ultimo';
+      btn.innerHTML = guardado + '<span class="gate-ultimo-tag">La última vez</span>';
+      btn.addEventListener('click', function() { entrarComo(guardado); });
+      grid.appendChild(btn);
+    }
+
+    // Botón "Otro" → muestra el campo para escribir el nombre
+    const btnOtro = document.createElement('button');
+    btnOtro.type = 'button';
+    btnOtro.className = 'gate-btn gate-btn-otro';
+    btnOtro.textContent = 'Otro…';
+    btnOtro.addEventListener('click', function() {
+      const wrapper = document.getElementById('gate-otro-wrapper');
+      wrapper.style.display = 'flex';
+      document.getElementById('gate-otro-nombre').focus();
+    });
+    grid.appendChild(btnOtro);
+
+    // Entrar con el nombre escrito (botón o Enter)
+    function entrarConNombreLibre() {
+      const nombre = document.getElementById('gate-otro-nombre').value.trim();
+      if (!nombre) {
+        document.getElementById('gate-otro-nombre').focus();
+        return;
+      }
+      entrarComo(nombre);
+    }
+    document.getElementById('gate-otro-entrar').addEventListener('click', entrarConNombreLibre);
+    document.getElementById('gate-otro-nombre').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') entrarConNombreLibre();
     });
   }
 
@@ -4201,6 +4451,8 @@
 
     document.getElementById('toggle-mensualidades').addEventListener('change', onToggleMensualidades);
     inicializarAsesor();
+    // Fecha del header siempre actual
+    document.getElementById('fecha-header').textContent = obtenerFechaHoy();
     document.getElementById('toggle-estacionamiento').addEventListener('change', onToggleEstacionamiento);
     document.getElementById('estac-monto').addEventListener('input', function() {
       if (estadoPago.incluyeEstacionamiento) recalcularPaso3();
