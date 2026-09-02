@@ -1881,6 +1881,649 @@
     }
   }
 
+  /* =====================================================================
+     V15 · REDISEÑO EDITORIAL DEL PASO 4
+     Verde TRUST #173F35 · Gris TRUST #97999B · Crema #FAF8F3
+     Georgia + Montserrat · Layout carta 8.5" x 11"
+     ===================================================================== */
+
+  /* Ocultar estilos legacy del doc-carta cuando es v15 */
+  .doc-carta.v15 {
+    background: #FFFFFF;
+    color: #173F35;
+    font-family: 'Georgia', serif;
+    padding: 0;
+    border: 0.5px solid #D8D3C8;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    overflow: hidden;
+  }
+
+  /* ---- Header ---- */
+  .v15-header {
+    background: #173F35;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .v15-header-left { flex: 1; }
+  .v15-project-name {
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+  .v15-project-tag {
+    color: #FFFFFF;
+    opacity: 0.85;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin-top: 8px;
+  }
+  .v15-header-logo {
+    width: 180px;
+    display: flex;
+    align-items: center;
+  }
+  .v15-header-logo svg { width: 100%; height: auto; }
+
+  /* ---- Cliente y asesor ---- */
+  .v15-cliente-asesor {
+    background: #FAF8F3;
+    border-top: 0.5px solid #D8D3C8;
+    border-bottom: 0.5px solid #D8D3C8;
+    padding: 28px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    position: relative;
+  }
+  .v15-cliente-asesor::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 50%;
+    width: 0.5px;
+    background: #D8D3C8;
+  }
+  .v15-ca-label {
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .v15-ca-name {
+    color: #173F35;
+    font-family: 'Georgia', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-top: 12px;
+    line-height: 1.15;
+  }
+  .v15-ca-sub {
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    margin-top: 8px;
+  }
+
+  /* ---- Hero precio ---- */
+  .v15-hero {
+    background: #173F35;
+    padding: 30px 60px 32px;
+    color: #FFFFFF;
+    position: relative;
+  }
+  .v15-hero-label {
+    color: #FFFFFF;
+    opacity: 0.85;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .v15-hero-lista {
+    color: #FFFFFF;
+    opacity: 0.85;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    margin-top: 14px;
+  }
+  .v15-lista-txt { font-style: italic; }
+  .v15-lista-monto {
+    text-decoration: line-through;
+    margin-left: 12px;
+  }
+  .v15-hero-precio {
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    font-size: 58px;
+    font-weight: 400;
+    margin-top: 12px;
+    line-height: 1;
+  }
+  .v15-hero-divisor {
+    height: 0.5px;
+    background: rgba(255,255,255,0.2);
+    margin: 20px 0 14px;
+  }
+  .v15-hero-ahorro {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .v15-ahorro-label {
+    color: #FFFFFF;
+    opacity: 0.85;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .v15-ahorro-monto {
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  /* ---- Esquema de pago (3 cards) ---- */
+  .v15-esquema {
+    padding: 22px 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+  }
+  .v15-esquema.structure-2 { grid-template-columns: 1fr 1fr; }
+  .v15-esquema-card {
+    border: 0.5px solid #D8D3C8;
+    overflow: hidden;
+  }
+  .v15-card-blanco { background: #FFFFFF; }
+  .v15-card-crema { background: #FAF8F3; }
+  .v15-card-header {
+    background: #173F35;
+    color: #FFFFFF;
+    padding: 10px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .v15-card-body {
+    padding: 24px 12px 20px;
+    text-align: center;
+  }
+  .v15-card-monto {
+    color: #173F35;
+    font-family: 'Georgia', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .v15-card-sub {
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+  .v15-card-desc {
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* ---- Secciones con título italic + línea ---- */
+  .v15-seccion {
+    padding: 30px 60px 0;
+  }
+  .v15-seccion-title {
+    color: #173F35;
+    font-family: 'Georgia', serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .v15-seccion-line {
+    height: 1px;
+    background: #173F35;
+    margin-top: 8px;
+  }
+
+  /* ---- Detalle de la unidad (4 cards) ---- */
+  .v15-detalle-cards {
+    padding: 12px 20px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .v15-det-card {
+    border: 0.5px solid #D8D3C8;
+    padding: 16px 12px;
+    text-align: center;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .v15-det-label {
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .v15-det-value {
+    color: #173F35;
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-top: 10px;
+    line-height: 1;
+  }
+  .v15-det-desc {
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    margin-top: 4px;
+  }
+
+  /* ---- Amenidades (barra crema con iconos verdes) ---- */
+  .v15-amenidades {
+    margin: 22px 20px 0;
+    background: #FAF8F3;
+    border: 0.5px solid #D8D3C8;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+  }
+  .v15-amen-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #173F35;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+  }
+  .v15-amen-item svg {
+    width: 20px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  /* ---- Cronograma (tabla con enganche/escrit verdes) ---- */
+  .v15-crono-wrapper {
+    padding: 12px 60px 0;
+  }
+  .v15-crono {
+    display: grid;
+    gap: 0;
+  }
+  .v15-crono-cell {
+    border: 0.5px solid #D8D3C8;
+    padding: 6px 3px;
+    text-align: center;
+    background: #FFFFFF;
+    min-height: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .v15-crono-cell.v15-crono-key {
+    background: #173F35;
+    border-color: #173F35;
+  }
+  .v15-crono-cell.v15-crono-empty {
+    background: transparent;
+    border-color: transparent;
+  }
+  .v15-crono-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    color: #6E7072;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    line-height: 1.1;
+  }
+  .v15-crono-cell.v15-crono-key .v15-crono-label {
+    color: #FFFFFF;
+    font-weight: 600;
+  }
+  .v15-crono-amount {
+    font-family: 'Georgia', serif;
+    font-size: 9.5px;
+    color: #173F35;
+    margin-top: 3px;
+    display: block;
+    line-height: 1;
+  }
+  .v15-crono-cell.v15-crono-key .v15-crono-amount {
+    color: #FFFFFF;
+    font-size: 9px;
+  }
+
+  /* ---- Footer verde ---- */
+  .v15-footer {
+    background: #173F35;
+    padding: 18px 60px;
+    color: #FFFFFF;
+    margin-top: 28px;
+  }
+  .v15-footer-main {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: center;
+  }
+  .v15-footer-legal {
+    color: #6E7072;
+    font-family: 'Georgia', serif;
+    font-size: 8px;
+    font-style: italic;
+    text-align: center;
+    padding: 18px 60px 0;
+    line-height: 1.5;
+  }
+  .v15-footer-brand {
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-align: center;
+    padding: 10px 60px 24px;
+    text-transform: uppercase;
+  }
+
+  /* ---- Selector de asesor (topbar) ---- */
+  .asesor-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-right: 8px;
+  }
+  .asesor-select {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 10px;
+    cursor: pointer;
+    outline: none;
+  }
+  .asesor-select option { color: #173F35; background: #FFFFFF; }
+  .asesor-select.asesor-pendiente {
+    border-color: #E8B04B;
+    box-shadow: 0 0 0 2px rgba(232,176,75,0.3);
+  }
+
+  /* ---- Toggle estacionamiento pagado (Paso 3) ---- */
+  .toggle-estac {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .estac-monto-wrapper {
+    width: 180px;
+  }
+  .estac-monto-wrapper input {
+    width: 100%;
+  }
+
+  /* ---- Upload de planta arquitectónica (Paso 1) ---- */
+  .planta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: transparent;
+    border: 1px dashed #97999B;
+    border-radius: 4px;
+    color: #173F35;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .planta-btn:hover {
+    border-color: #173F35;
+    background: #FAF8F3;
+  }
+  .planta-preview {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    background: #FAF8F3;
+    border: 0.5px solid #D8D3C8;
+    border-radius: 4px;
+  }
+  .planta-preview img {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    background: #FFFFFF;
+    border: 0.5px solid #D8D3C8;
+  }
+  .planta-preview-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .planta-nombre {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #173F35;
+  }
+  .planta-hint {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    color: #6E7072;
+  }
+  .planta-quitar {
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 4px 0;
+    background: none;
+    border: none;
+    color: #97999B;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .planta-quitar:hover { color: #173F35; }
+
+  /* ---- Hoja 2: planta arquitectónica ---- */
+  .doc-carta.v15-hoja2 {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+  .v15-h2-header {
+    background: #173F35;
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .v15-h2-title {
+    color: #FFFFFF;
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .v15-h2-sub {
+    color: #FFFFFF;
+    opacity: 0.85;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+  .v15-h2-logo { width: 140px; }
+  .v15-h2-imagen {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 40px 16px;
+    min-height: 400px;
+  }
+  .v15-h2-imagen img {
+    max-width: 100%;
+    max-height: 760px;
+    object-fit: contain;
+  }
+  .v15-h2-caption {
+    text-align: center;
+    color: #6E7072;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 0 60px 24px;
+    text-transform: uppercase;
+  }
+  .v15-h2-footer {
+    background: #173F35;
+    padding: 12px 60px;
+  }
+  .v15-h2-brand {
+    color: #FFFFFF;
+    opacity: 0.85;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* ---- Print styles para V15 (compactado para caber en 1 hoja carta) ---- */
+  @media print {
+    body { margin: 0; padding: 0; }
+    .doc-carta.v15 {
+      width: 8.5in;
+      max-height: 11in;
+      border: none;
+      box-shadow: none;
+      padding: 0 !important; /* anular el 12mm/14mm del print legacy: el verde sangra al borde */
+      page-break-after: avoid;
+      page-break-inside: avoid;
+    }
+    .v15-header { padding: 0.28in 0.55in 0.22in !important; }
+    .v15-project-name { font-size: 28pt !important; }
+    .v15-project-tag { font-size: 8pt !important; margin-top: 4pt !important; letter-spacing: 1.5pt !important; }
+    .v15-header-logo { width: 140px !important; }
+
+    .v15-cliente-asesor { padding: 0.20in 0.55in !important; gap: 0.3in !important; }
+    .v15-cliente-asesor::before { top: 0.14in !important; bottom: 0.14in !important; }
+    .v15-ca-label { font-size: 6.5pt !important; letter-spacing: 1.5pt !important; }
+    .v15-ca-name { font-size: 20pt !important; margin-top: 6pt !important; }
+    .v15-ca-sub { font-size: 8pt !important; margin-top: 5pt !important; }
+
+    .v15-hero { padding: 0.18in 0.55in 0.20in !important; }
+    .v15-hero-label { font-size: 8pt !important; letter-spacing: 1.5pt !important; }
+    .v15-hero-lista { font-size: 11pt !important; margin-top: 7pt !important; }
+    .v15-hero-precio { font-size: 40pt !important; margin-top: 7pt !important; }
+    .v15-hero-divisor { margin: 10pt 0 8pt !important; }
+    .v15-ahorro-label { font-size: 7pt !important; letter-spacing: 1.5pt !important; }
+    .v15-ahorro-monto { font-size: 14pt !important; }
+
+    .v15-esquema { padding: 0.16in 0.2in 0 !important; gap: 10px !important; }
+    .v15-card-header { padding: 6pt 0 !important; font-size: 8pt !important; letter-spacing: 1.5pt !important; }
+    .v15-card-body { padding: 0.14in 0.1in 0.12in !important; }
+    .v15-card-monto { font-size: 20pt !important; }
+    .v15-card-sub { font-size: 7pt !important; margin-top: 7pt !important; letter-spacing: 0.8pt !important; }
+    .v15-card-desc { font-size: 6.5pt !important; margin-top: 3pt !important; }
+
+    .v15-seccion { padding: 0.18in 0.55in 0 !important; }
+    .v15-seccion-title { font-size: 11pt !important; }
+    .v15-seccion-line { margin-top: 5pt !important; }
+
+    .v15-detalle-cards { padding: 0.09in 0.2in 0 !important; }
+    .v15-det-card { min-height: 0.62in !important; padding: 9pt 6pt !important; }
+    .v15-det-label { font-size: 6.5pt !important; letter-spacing: 1.5pt !important; }
+    .v15-det-value { font-size: 15pt !important; margin-top: 4pt !important; }
+    .v15-det-desc { font-size: 7pt !important; margin-top: 3pt !important; }
+
+    .v15-amenidades { margin: 0.16in 0.2in 0 !important; padding: 8pt 0.14in !important; }
+    .v15-amen-item { font-size: 8pt !important; gap: 5pt !important; }
+    .v15-amen-item svg { width: 15px !important; height: 12px !important; }
+
+    .v15-crono-wrapper { padding: 0.09in 0.55in 0 !important; }
+    .v15-crono-cell { min-height: 0.28in !important; padding: 3pt 2pt !important; }
+    .v15-crono-label { font-size: 6.5pt !important; letter-spacing: 0.5pt !important; }
+    .v15-crono-amount { font-size: 8pt !important; margin-top: 2pt !important; }
+    .v15-crono-cell.v15-crono-key .v15-crono-amount { font-size: 7.5pt !important; }
+
+    .v15-footer { padding: 0.13in 0.55in !important; margin-top: 0.16in !important; }
+    .v15-footer-main { font-size: 12pt !important; }
+    .v15-footer-legal { padding: 0.10in 0.55in 0 !important; font-size: 6.5pt !important; }
+    .v15-footer-brand { padding: 5pt 0.55in 0.12in !important; font-size: 6.5pt !important; letter-spacing: 2pt !important; }
+
+    /* Hoja 2: planta arquitectónica en su propia página */
+    .doc-carta.v15-hoja2 {
+      page-break-before: always;
+      margin-top: 0 !important;
+      width: 8.5in;
+      height: 11in;
+      max-height: 11in;
+      display: flex !important;
+      flex-direction: column;
+    }
+    .doc-carta.v15-hoja2[style*="display: none"],
+    .doc-carta.v15-hoja2[style*="display:none"] {
+      display: none !important;
+    }
+    .v15-h2-header { padding: 0.24in 0.55in !important; }
+    .v15-h2-title { font-size: 18pt !important; }
+    .v15-h2-sub { font-size: 8pt !important; margin-top: 4pt !important; }
+    .v15-h2-logo { width: 110px !important; }
+    .v15-h2-imagen { padding: 0.24in 0.4in 0.10in !important; min-height: 0 !important; }
+    .v15-h2-imagen img { max-height: 8.4in !important; }
+    .v15-h2-caption { font-size: 8pt !important; padding: 0 0.55in 0.18in !important; }
+    .v15-h2-footer { padding: 0.10in 0.55in !important; }
+    .v15-h2-brand { font-size: 6.5pt !important; }
+  }
+
 </style>
 </head>
 <body>
@@ -1894,7 +2537,19 @@
     <div class="module-label">Cotizador</div>
   </div>
   <div class="user-chip">
-    <span>ALVARO · ADMIN</span>
+    <span class="asesor-label">Asesor</span>
+    <select id="asesor-activo" class="asesor-select">
+      <option value="">Selecciona…</option>
+      <option>Álvaro</option>
+      <option>Rodrigo</option>
+      <option>Majo</option>
+      <option>Paco</option>
+      <option>Fanny</option>
+      <option>María</option>
+      <option>Carlos</option>
+      <option>Ana Lu</option>
+      <option>Paola</option>
+    </select>
     <div class="user-avatar">A</div>
   </div>
 </div>
@@ -1953,6 +2608,7 @@
             <label>Desarrollo</label>
             <select id="selector-proyecto" onchange="onProyectoChange()">
               <option selected>Balcana Vertical</option>
+              <option>Tanhia Mezquitán</option>
               <option>Luciana Providencia</option>
               <option>Luciana Alberta</option>
               <option>Lázaro</option>
@@ -1986,9 +2642,11 @@
             <select>
               <option>Loft</option>
               <option selected>1 Cuarto</option>
+              <option>1 Cuarto Flex</option>
               <option>2 Cuartos</option>
               <option>2 Cuartos Flex</option>
               <option>3 Cuartos</option>
+              <option>Local</option>
             </select>
           </div>
           <div class="field col-3">
@@ -2046,6 +2704,22 @@
           <div class="field col-6 unit-prefix" data-prefix="$">
             <label>Precio M² de lista (calculado)</label>
             <input type="text" value="67,840" id="precio-m2" readonly style="background:var(--trust-gray-bg)" />
+          </div>
+
+          <div class="field col-12">
+            <label>Planta arquitectónica (opcional)</label>
+            <input type="file" id="planta-file" accept="image/*" style="display:none" onchange="onPlantaSeleccionada(event)" />
+            <button type="button" class="planta-btn" id="planta-btn-agregar" onclick="document.getElementById('planta-file').click()">
+              + Agregar planta de la unidad
+            </button>
+            <div class="planta-preview" id="planta-preview" style="display:none;">
+              <img id="planta-thumb" alt="Planta de la unidad" />
+              <div class="planta-preview-info">
+                <span class="planta-nombre" id="planta-nombre"></span>
+                <span class="planta-hint">Se incluirá como segunda hoja de la cotización</span>
+                <button type="button" class="planta-quitar" onclick="quitarPlanta()">Quitar planta</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2183,6 +2857,34 @@
           </label>
         </div>
 
+        <!-- Toggle estacionamiento pagado -->
+        <div class="toggle-wrapper toggle-estac">
+          <label class="toggle-label">
+            <input type="checkbox" id="toggle-estacionamiento" />
+            <span class="toggle-slider"></span>
+            <span class="toggle-text">Agregar estacionamiento pagado</span>
+          </label>
+          <div class="estac-monto-wrapper" id="estac-monto-wrapper" style="display:none;">
+            <div class="unit-prefix" data-prefix="$">
+              <input type="text" id="estac-monto" value="250,000" class="pt-input" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Toggle bodega pagada -->
+        <div class="toggle-wrapper toggle-estac">
+          <label class="toggle-label">
+            <input type="checkbox" id="toggle-bodega" />
+            <span class="toggle-slider"></span>
+            <span class="toggle-text">Agregar bodega pagada</span>
+          </label>
+          <div class="estac-monto-wrapper" id="bodega-monto-wrapper" style="display:none;">
+            <div class="unit-prefix" data-prefix="$">
+              <input type="text" id="bodega-monto" value="50,000" class="pt-input" />
+            </div>
+          </div>
+        </div>
+
         <!-- Tabla de estructura -->
         <div class="payment-table">
           <div class="pt-header">
@@ -2301,133 +3003,224 @@
       <div class="preview-wrapper">
         <!-- DOCUMENTO CARTA -->
         <div class="doc-carta-scaler">
-          <div class="doc-carta" id="doc-carta">
+          <div class="doc-carta v15" id="doc-carta">
 
-            <!-- HEADER -->
-            <div class="doc-header">
-              <div class="doc-header-brand">
-                <div class="doc-header-eyebrow">Cotización · TRUST Realtor</div>
-                <span class="doc-header-project" id="doc-proyecto">Balcana Vertical</span>
-                <span class="doc-header-project-sub" id="doc-proyecto-sub">Preventa · Guadalajara</span>
+            <!-- HEADER VERDE con logo blanco -->
+            <div class="v15-header">
+              <div class="v15-header-left">
+                <div class="v15-project-name" id="doc-proyecto">Balcana Vertical</div>
+                <div class="v15-project-tag" id="doc-proyecto-tag">PREVENTA</div>
               </div>
-              <div class="doc-header-meta">
-                <div class="meta-row">
-                  <span class="meta-label">Para</span>
-                  <span class="meta-value" id="doc-cliente">Francisco López</span>
+              <div class="v15-header-logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 70">
+                  <g transform="translate(-238, -273)">
+                    <rect x="405.2" y="273.3" fill="#FFFFFF" width="13.8" height="20"/>
+                    <rect x="364.3" y="273.3" fill="#FFFFFF" width="13.8" height="20"/>
+                    <path fill="#FFFFFF" d="M401.6,320.5c-2.4,2.5-5.7,3.8-9.9,3.8c-4.2,0-7.6-1.3-9.9-3.9c-2.1-2.2-3.2-5.4-3.5-9.6h-13.8c0.3,8.4,2.7,14.8,7.2,19.2c4.8,4.7,11.5,7,19.9,7c4.2,0,8-0.6,11.4-1.7c3.4-1.2,6.3-2.9,8.7-5.3c2.4-2.4,4.2-5.3,5.5-8.8c1.1-3,1.7-6.5,1.9-10.3h-13.8C404.9,315.1,403.7,318.3,401.6,320.5"/>
+                    <polygon fill="#FFFFFF" points="257.1,286 238,286 238,273.3 290,273.3 290,286 270.9,286 270.9,336 257.1,336"/>
+                    <path fill="#FFFFFF" d="M328.3,303.8c3.4,0,6-0.8,7.8-2.4c1.8-1.6,2.7-3.8,2.7-6.5v-0.2c0-3-1-5.2-2.9-6.7c-1.9-1.5-4.6-2.2-8-2.2h-13.7v18H328.3z M300.6,273.3h28.7c7.9,0,14,2.1,18.3,6.4c3.6,3.6,5.4,8.4,5.4,14.3v0.2c0,5.1-1.2,9.2-3.7,12.4c-2.5,3.2-5.7,5.5-9.7,7l15.3,22.4h-16.1L325.2,316H325h-10.7V336h-13.8V273.3z"/>
+                    <path fill="#FFFFFF" d="M455.5,336.9c-4.8,0-9.5-0.8-14.1-2.5c-4.6-1.6-8.8-4.2-12.5-7.6l8.2-9.8c2.9,2.3,5.8,4.2,8.8,5.6c3,1.4,6.3,2.1,9.9,2.1c2.9,0,5.1-0.5,6.7-1.6c1.6-1,2.4-2.5,2.4-4.3v-0.2c0-0.9-0.2-1.7-0.5-2.4c-0.3-0.7-1-1.3-1.9-1.9c-0.9-0.6-2.2-1.2-3.9-1.8c-1.6-0.6-3.8-1.2-6.4-1.9c-3.2-0.8-6-1.6-8.6-2.6c-2.6-1-4.8-2.1-6.6-3.5c-1.8-1.4-3.2-3.2-4.2-5.2c-1-2.1-1.5-4.7-1.5-7.8v-0.2c0-2.9,0.5-5.4,1.6-7.7c1.1-2.3,2.6-4.3,4.5-6c1.9-1.7,4.2-3,6.9-3.9c2.7-0.9,5.6-1.3,8.9-1.3c4.6,0,8.8,0.7,12.7,2.1c3.9,1.4,7.4,3.3,10.6,5.9l-7.2,10.4c-2.8-1.9-5.6-3.4-8.2-4.5c-2.7-1.1-5.4-1.7-8.1-1.7c-2.7,0-4.7,0.5-6,1.6c-1.3,1-2,2.3-2,3.9v0.2c0,1,0.2,1.9,0.6,2.6c0.4,0.7,1.1,1.4,2.1,2c1,0.6,2.4,1.2,4.2,1.7c1.8,0.5,4,1.2,6.7,1.9c3.2,0.8,6,1.8,8.5,2.8c2.5,1,4.6,2.3,6.3,3.8c1.7,1.5,3,3.2,3.9,5.2c0.9,2,1.3,4.3,1.3,7.1v0.2c0,3.1-0.6,5.9-1.7,8.3c-1.1,2.4-2.7,4.4-4.7,6.1c-2,1.6-4.4,2.9-7.2,3.8C462,336.5,458.9,336.9,455.5,336.9"/>
+                    <polygon fill="#FFFFFF" points="505,286 485.9,286 485.9,273.3 537.9,273.3 537.9,286 518.8,286 518.8,336 505,336"/>
+                    <path fill="#FFFFFF" d="M362,301.9c0.4,0,0.6-0.1,0.8-0.3c0.2-0.2,0.3-0.4,0.3-0.7v0c0-0.3-0.1-0.6-0.3-0.7c-0.2-0.2-0.5-0.2-0.9-0.2h-1.5v1.9H362z M359,298.6h3.1c0.9,0,1.5,0.2,2,0.7c0.4,0.4,0.6,0.9,0.6,1.5v0c0,0.5-0.1,1-0.4,1.3c-0.3,0.3-0.6,0.6-1,0.8l1.6,2.4h-1.7l-1.4-2.2h0h-1.1v2.2H359V298.6z"/>
+                    <polygon fill="#FFFFFF" points="369.8,298.6 374.9,298.6 374.9,299.9 371.3,299.9 371.3,301.3 374.4,301.3 374.4,302.6 371.3,302.6 371.3,304 374.9,304 374.9,305.3 369.8,305.3"/>
+                    <path fill="#FFFFFF" d="M384,302.5l-0.9-2.2l-0.9,2.2H384z M382.4,298.6h1.4l2.9,6.8h-1.6l-0.6-1.5h-2.8l-0.6,1.5h-1.5L382.4,298.6z"/>
+                    <polygon fill="#FFFFFF" points="391.6,298.6 393,298.6 393,304 396.4,304 396.4,305.3 391.6,305.3"/>
+                    <polygon fill="#FFFFFF" points="402.9,300 400.9,300 400.9,298.6 406.5,298.6 406.5,300 404.4,300 404.4,305.3 402.9,305.3"/>
+                    <path fill="#FFFFFF" d="M414.7,304.1c0.3,0,0.6-0.1,0.8-0.2c0.3-0.1,0.5-0.3,0.6-0.5c0.2-0.2,0.3-0.4,0.4-0.7c0.1-0.3,0.1-0.5,0.1-0.8v0c0-0.3-0.1-0.6-0.1-0.8c-0.1-0.3-0.2-0.5-0.4-0.7c-0.2-0.2-0.4-0.3-0.6-0.5c-0.3-0.1-0.5-0.2-0.8-0.2c-0.3,0-0.6,0.1-0.8,0.2c-0.2,0.1-0.5,0.3-0.6,0.5c-0.2,0.2-0.3,0.4-0.4,0.7c-0.1,0.3-0.1,0.5-0.1,0.8v0c0,0.3,0,0.6,0.1,0.8c0.1,0.3,0.2,0.5,0.4,0.7c0.2,0.2,0.4,0.3,0.6,0.5C414.2,304,414.4,304.1,414.7,304.1 M414.7,305.5c-0.5,0-1-0.1-1.4-0.3c-0.4-0.2-0.8-0.4-1.1-0.7c-0.3-0.3-0.6-0.7-0.7-1.1c-0.2-0.4-0.3-0.9-0.3-1.4v0c0-0.5,0.1-0.9,0.3-1.4c0.2-0.4,0.4-0.8,0.7-1.1c0.3-0.3,0.7-0.6,1.1-0.8c0.4-0.2,0.9-0.3,1.4-0.3c0.5,0,1,0.1,1.4,0.3c0.4,0.2,0.8,0.4,1.1,0.7c0.3,0.3,0.6,0.7,0.7,1.1c0.2,0.4,0.3,0.9,0.3,1.4v0c0,0.5-0.1,0.9-0.3,1.4c-0.2,0.4-0.4,0.8-0.7,1.1c-0.3,0.3-0.7,0.6-1.1,0.8C415.7,305.4,415.2,305.5,414.7,305.5"/>
+                    <path fill="#FFFFFF" d="M426.5,301.9c0.4,0,0.6-0.1,0.8-0.3c0.2-0.2,0.3-0.4,0.3-0.7v0c0-0.3-0.1-0.6-0.3-0.7c-0.2-0.2-0.5-0.2-0.9-0.2H425v1.9H426.5z M423.5,298.6h3.1c0.9,0,1.5,0.2,2,0.7c0.4,0.4,0.6,0.9,0.6,1.5v0c0,0.5-0.1,1-0.4,1.3c-0.3,0.3-0.6,0.6-1,0.8l1.6,2.4h-1.7l-1.4-2.2h0H425v2.2h-1.5V298.6z"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <!-- CLIENTE Y ASESOR (bloque crema) -->
+            <div class="v15-cliente-asesor">
+              <div class="v15-ca-col">
+                <div class="v15-ca-label">COTIZACIÓN PARA</div>
+                <div class="v15-ca-name" id="doc-cliente">Francisco López Ramírez</div>
+                <div class="v15-ca-sub" id="doc-fecha-vigencia">Generada el 22 de abril, 2026 · Vigente 15 días</div>
+              </div>
+              <div class="v15-ca-col">
+                <div class="v15-ca-label">TU ASESOR DE INVERSIÓN</div>
+                <div class="v15-ca-name" id="doc-asesor">Álvaro Arizti</div>
+                <div class="v15-ca-sub" id="doc-asesor-sub">TRUST Inmobiliaria</div>
+              </div>
+            </div>
+
+            <!-- HERO PRECIO (verde con precio grande) -->
+            <div class="v15-hero" id="doc-hero">
+              <div class="v15-hero-label">TU PRECIO DE PREVENTA</div>
+              <div class="v15-hero-lista" id="doc-hero-lista-wrapper">
+                <span class="v15-lista-txt">Precio de lista</span>
+                <span class="v15-lista-monto" id="doc-precio-lista-amt">$3,278,691</span>
+              </div>
+              <div class="v15-hero-precio" id="doc-hero-precio">$2,786,887</div>
+              <div class="v15-hero-lista" id="doc-hero-estac-row" style="display:none;">
+                <span class="v15-lista-txt">Incluye estacionamiento adicional</span>
+                <span id="doc-hero-estac-amt" style="margin-left:12px;">$250,000</span>
+              </div>
+              <div class="v15-hero-lista" id="doc-hero-bodega-row" style="display:none;">
+                <span class="v15-lista-txt">Incluye bodega adicional</span>
+                <span id="doc-hero-bodega-amt" style="margin-left:12px;">$120,000</span>
+              </div>
+              <div class="v15-hero-divisor"></div>
+              <div class="v15-hero-ahorro" id="doc-hero-ahorro-row">
+                <span class="v15-ahorro-label" id="doc-desc-pct">AHORRO CON DESCUENTO DEL 15%</span>
+                <span class="v15-ahorro-monto" id="doc-desc-amt">− $491,804 MXN</span>
+              </div>
+              <!-- price-neto oculto pero necesario para el JS existente -->
+              <span id="doc-precio-neto-amt" style="display:none;"></span>
+              <!-- placeholder oculto para hero enganche/mensualidad legacy -->
+              <span id="doc-hero-precio-sub" style="display:none;"></span>
+              <span id="doc-hero-enganche" style="display:none;"></span>
+              <span id="doc-hero-enganche-sub" style="display:none;"></span>
+              <span id="doc-hero-mensualidad" style="display:none;"></span>
+              <span id="doc-hero-mensualidad-sub" style="display:none;"></span>
+              <span id="doc-hero-mensualidad-block" style="display:none;"></span>
+            </div>
+
+            <!-- ESQUEMA DE PAGO (3 cards con headers verdes) -->
+            <div class="v15-esquema" id="doc-structure">
+              <div class="v15-esquema-card v15-card-blanco">
+                <div class="v15-card-header">ENGANCHE</div>
+                <div class="v15-card-body">
+                  <div class="v15-card-monto" id="doc-struct-eng-amt">$557,377</div>
+                  <div class="v15-card-sub"><span id="doc-struct-eng-pct">20%</span> AL FIRMAR</div>
+                  <div class="v15-card-desc" id="doc-struct-eng-detail">Contrato de compraventa</div>
                 </div>
-                <div class="meta-row">
-                  <span class="meta-label">Fecha</span>
-                  <span class="meta-value" id="doc-fecha">22 de abril, 2026</span>
+              </div>
+              <div class="v15-esquema-card v15-card-crema" id="doc-struct-mens-card">
+                <div class="v15-card-header">MENSUALIDADES</div>
+                <div class="v15-card-body">
+                  <div class="v15-card-monto" id="doc-struct-mens-amt">$61,929</div>
+                  <div class="v15-card-sub"><span id="doc-struct-mens-num">18</span> PAGOS MENSUALES</div>
+                  <div class="v15-card-desc" id="doc-struct-mens-total">Durante obra · sin intereses</div>
                 </div>
-                <div class="meta-row">
-                  <span class="meta-label">Vigencia</span>
-                  <span class="meta-value" id="doc-vigencia">7 de mayo, 2026</span>
+              </div>
+              <div class="v15-esquema-card v15-card-blanco">
+                <div class="v15-card-header">A LA ESCRITURACIÓN</div>
+                <div class="v15-card-body">
+                  <div class="v15-card-monto" id="doc-struct-esc-amt">$1,114,755</div>
+                  <div class="v15-card-sub"><span id="doc-struct-esc-pct">40%</span> AL ENTREGAR</div>
+                  <div class="v15-card-desc">Al recibir tus llaves</div>
                 </div>
               </div>
             </div>
 
-            <!-- HERO NUMÉRICO -->
-            <div class="doc-hero" id="doc-hero">
-              <div class="hero-block">
-                <span class="hero-label">Precio final</span>
-                <span class="hero-number big" id="doc-hero-precio">$3,278,691</span>
-                <span class="hero-subline" id="doc-hero-precio-sub">Sin descuento aplicado</span>
+            <!-- DETALLE DE LA UNIDAD (título italic + línea) -->
+            <div class="v15-seccion">
+              <div class="v15-seccion-title">Detalle de la unidad</div>
+              <div class="v15-seccion-line"></div>
+            </div>
+            <div class="v15-detalle-cards">
+              <div class="v15-det-card v15-card-blanco">
+                <div class="v15-det-label">TIPOLOGÍA</div>
+                <div class="v15-det-value" id="doc-modelo">1 CUARTO</div>
+                <div class="v15-det-desc" id="doc-id">Unidad 401</div>
               </div>
-              <div class="hero-block">
-                <span class="hero-label">Enganche</span>
-                <span class="hero-number med" id="doc-hero-enganche">$655,738</span>
-                <span class="hero-subline" id="doc-hero-enganche-sub">20% inicial</span>
+              <div class="v15-det-card v15-card-crema">
+                <div class="v15-det-label">SUPERFICIE TOTAL</div>
+                <div class="v15-det-value" id="doc-m2-total">48.33 m²</div>
+                <div class="v15-det-desc" id="doc-m2-parcial">Interior 46.14 · Terraza 2.19</div>
               </div>
-              <div class="hero-block" id="doc-hero-mensualidad-block">
-                <span class="hero-label">Mensualidad</span>
-                <span class="hero-number med" id="doc-hero-mensualidad">$72,860</span>
-                <span class="hero-subline" id="doc-hero-mensualidad-sub">18 pagos durante obra</span>
+              <div class="v15-det-card v15-card-blanco">
+                <div class="v15-det-label">NIVEL · VISTA</div>
+                <div class="v15-det-value" id="doc-nivel">Nivel 9</div>
+                <div class="v15-det-desc" id="doc-vista">Vista Chapultepec</div>
+              </div>
+              <div class="v15-det-card v15-card-crema">
+                <div class="v15-det-label">PRECIO POR M²</div>
+                <div class="v15-det-value" id="doc-precio-m2">$59,000</div>
+                <div class="v15-det-desc" id="doc-precio-m2-desc">Precio con descuento</div>
               </div>
             </div>
 
-            <!-- INFO GRID -->
-            <div class="doc-info">
-              <div>
-                <div class="doc-info-block-title">Unidad</div>
-                <div class="doc-info-row"><span class="dlabel">Modelo</span><span class="dvalue" id="doc-modelo">1 Cuarto</span></div>
-                <div class="doc-info-row"><span class="dlabel">ID</span><span class="dvalue" id="doc-id">Cuarto</span></div>
-                <div class="doc-info-row"><span class="dlabel">Nivel</span><span class="dvalue" id="doc-nivel">9</span></div>
-                <div class="doc-info-row"><span class="dlabel">Vista</span><span class="dvalue" id="doc-vista">Chapultepec</span></div>
-                <div class="doc-info-row"><span class="dlabel">Interior / Terraza</span><span class="dvalue" id="doc-m2-parcial">46.14 / 2.19 m²</span></div>
-                <div class="doc-info-row"><span class="dlabel">M² totales</span><span class="dvalue" id="doc-m2-total">48.33 m²</span></div>
+            <!-- AMENIDADES (barra crema con iconos verdes) -->
+            <div class="v15-amenidades">
+              <div class="v15-amen-item">
+                <svg viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M 2 3 L 8 3 L 8 7 L 2 7 Z" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="1" y="7" width="18" height="6" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span id="doc-recamaras">1 Recámara</span>
               </div>
-              <div>
-                <div class="doc-info-block-title">Detalle</div>
-                <div class="doc-info-row"><span class="dlabel">Recámaras</span><span class="dvalue" id="doc-recamaras">1</span></div>
-                <div class="doc-info-row"><span class="dlabel">Baños</span><span class="dvalue" id="doc-banos">1</span></div>
-                <div class="doc-info-row"><span class="dlabel">Estacionamiento</span><span class="dvalue" id="doc-estac">1</span></div>
-                <div class="doc-info-row"><span class="dlabel">Bodega</span><span class="dvalue" id="doc-bodega">0</span></div>
-                <div class="doc-info-row"><span class="dlabel">Precio M²</span><span class="dvalue" id="doc-precio-m2">$69,412</span></div>
-                <div class="doc-info-row"><span class="dlabel">Broker</span><span class="dvalue" id="doc-broker">Equipo interno TRUST</span></div>
+              <div class="v15-amen-item">
+                <svg viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="10" y1="1" x2="10" y2="4" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <path d="M 3 5 Q 10 3 17 5" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <line x1="6" y1="8" x2="6" y2="11" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <line x1="10" y1="8" x2="10" y2="12" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                  <line x1="14" y1="8" x2="14" y2="11" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span id="doc-banos">1 Baño</span>
               </div>
-            </div>
-
-            <!-- DESGLOSE DEL PRECIO -->
-            <div class="doc-price-breakdown">
-              <div class="doc-section-title">Desglose del precio</div>
-              <div class="price-row">
-                <span class="price-concept">Precio de lista</span>
-                <span class="price-detail" id="doc-precio-detail-lista">Base del desarrollo</span>
-                <span class="price-amount" id="doc-precio-lista-amt">$3,278,691</span>
+              <div class="v15-amen-item">
+                <svg viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M 3 7 L 5 3 L 15 3 L 17 7" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M 1 7 L 19 7 L 19 11 L 1 11 Z" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="5" cy="12.5" r="1.4" stroke="#173F35" stroke-width="1.5" fill="none"/>
+                  <circle cx="15" cy="12.5" r="1.4" stroke="#173F35" stroke-width="1.5" fill="none"/>
+                </svg>
+                <span id="doc-estac">1 Estacionamiento</span>
               </div>
-              <div class="price-row price-discount" id="doc-row-descuento" style="display:none;">
-                <span class="price-concept">Descuento</span>
-                <span class="price-detail" id="doc-desc-pct">0%</span>
-                <span class="price-amount" id="doc-desc-amt">-$0</span>
-              </div>
-              <div class="price-row price-final">
-                <span class="price-concept">Precio final</span>
-                <span class="price-detail">El que paga el cliente</span>
-                <span class="price-amount" id="doc-precio-neto-amt">$3,278,691</span>
-              </div>
-            </div>
-
-            <!-- ESTRUCTURA DEL PAGO -->
-            <div class="doc-schedule">
-              <div class="doc-section-title">Estructura del pago</div>
-              <div class="doc-structure" id="doc-structure">
-                <div class="struct-card">
-                  <div class="struct-label">Enganche</div>
-                  <div class="struct-amount" id="doc-struct-eng-amt">$655,738</div>
-                  <div class="struct-detail"><strong id="doc-struct-eng-pct">20%</strong> del precio final · <span id="doc-struct-eng-detail">Pago inicial</span></div>
-                </div>
-                <div class="struct-card" id="doc-struct-mens-card">
-                  <div class="struct-label">Mensualidades</div>
-                  <div class="struct-amount" id="doc-struct-mens-amt">$72,860</div>
-                  <div class="struct-detail"><strong id="doc-struct-mens-num">18 pagos</strong> · <span id="doc-struct-mens-total">Total $1,311,476</span></div>
-                </div>
-                <div class="struct-card">
-                  <div class="struct-label">A la escrituración</div>
-                  <div class="struct-amount" id="doc-struct-esc-amt">$1,311,477</div>
-                  <div class="struct-detail"><strong id="doc-struct-esc-pct">40%</strong> · <span>Al entregar la unidad</span></div>
-                </div>
+              <div class="v15-amen-item">
+                <svg viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="4" width="16" height="10" stroke="#173F35" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <line x1="2" y1="7" x2="18" y2="7" stroke="#173F35" stroke-width="1.5" fill="none"/>
+                  <line x1="8" y1="4" x2="8" y2="7" stroke="#173F35" stroke-width="1.5" fill="none"/>
+                  <line x1="12" y1="4" x2="12" y2="7" stroke="#173F35" stroke-width="1.5" fill="none"/>
+                </svg>
+                <span id="doc-bodega-txt">Bodega no incluida</span>
+                <!-- placeholder oculto para JS legacy -->
+                <span id="doc-bodega" style="display:none;"></span>
+                <span id="doc-broker" style="display:none;"></span>
               </div>
             </div>
 
-            <!-- CRONOGRAMA -->
-            <div class="doc-schedule" id="doc-cronograma-wrapper">
-              <div class="doc-section-title">Cronograma de pagos</div>
-              <div class="schedule-h" id="doc-schedule-grid">
+            <!-- CRONOGRAMA (título italic + línea + tabla) -->
+            <div class="v15-seccion" id="doc-cronograma-wrapper">
+              <div class="v15-seccion-title">Cronograma de pagos</div>
+              <div class="v15-seccion-line"></div>
+            </div>
+            <div class="v15-crono-wrapper">
+              <div class="v15-crono" id="doc-schedule-grid">
                 <!-- se llena con JS -->
               </div>
             </div>
 
-            <!-- FOOTER -->
-            <div class="doc-footer">
-              <div class="doc-footer-notes">
-                Cotización sujeta a disponibilidad del inmueble. Los precios y descuentos están vigentes únicamente dentro del periodo indicado. Las imágenes y materiales de venta son ilustrativos.
-              </div>
-              <div class="doc-footer-brand">
-                <div class="fb-logo">TRUST<span class="realtor">realtor</span></div>
-                <div class="fb-tag">Generada desde la plataforma</div>
-              </div>
+            <!-- FOOTER VERDE -->
+            <div class="v15-footer">
+              <div class="v15-footer-main">Aparta con solo $5,000 MXN · Reembolsables si no procede</div>
+            </div>
+            <div class="v15-footer-legal">Precios y disponibilidad sujetos a cambio sin previo aviso. Vigencia de 15 días naturales a partir de la emisión.</div>
+            <div class="v15-footer-brand">TRUST INMOBILIARIA · GUADALAJARA, JALISCO · MÉXICO</div>
+
+            <!-- placeholders ocultos para JS legacy (desglose viejo) -->
+            <div style="display:none;">
+              <span id="doc-row-descuento"></span>
+              <span id="doc-proyecto-sub"></span>
+              <span id="doc-fecha"></span>
+              <span id="doc-vigencia"></span>
             </div>
 
+          </div>
+
+          <!-- HOJA 2: PLANTA ARQUITECTÓNICA (solo si se cargó una imagen) -->
+          <div class="doc-carta v15 v15-hoja2" id="doc-carta-planta" style="display:none;">
+            <div class="v15-h2-header">
+              <div class="v15-h2-header-left">
+                <div class="v15-h2-title" id="doc-planta-title">Tu nuevo depa</div>
+                <div class="v15-h2-sub" id="doc-planta-sub">Balcana Vertical · 1 Cuarto · Nivel 9</div>
+              </div>
+              <div class="v15-header-logo v15-h2-logo" id="doc-planta-logo"><!-- logo clonado por JS --></div>
+            </div>
+            <div class="v15-h2-imagen">
+              <img id="doc-planta-img" alt="Planta arquitectónica de la unidad" />
+            </div>
+            <div class="v15-h2-caption" id="doc-planta-caption">Superficie total 48.33 m² · Interior 46.14 · Terraza 2.19</div>
+            <div class="v15-h2-footer">
+              <div class="v15-h2-brand">TRUST INMOBILIARIA · GUADALAJARA, JALISCO · MÉXICO</div>
+            </div>
           </div>
         </div>
 
@@ -2484,6 +3277,49 @@
     s.addEventListener('click', () => goToStep(i + 1));
   });
 
+  // Mostrar/ocultar text field cuando se selecciona "Otro" en el proyecto
+  function onProyectoChange() {
+    const sel = document.getElementById('selector-proyecto');
+    const wrapper = document.getElementById('proyecto-otro-wrapper');
+    const input = document.getElementById('proyecto-otro-nombre');
+    if (sel.value === 'Otro') {
+      wrapper.style.display = '';
+      setTimeout(() => input.focus(), 0);
+    } else {
+      wrapper.style.display = 'none';
+      input.value = '';
+    }
+  }
+
+  // === PLANTA ARQUITECTÓNICA (hoja 2 opcional) ==========================
+  let plantaDataURL = null;
+
+  function onPlantaSeleccionada(ev) {
+    const file = ev.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) {
+      alert('Por favor sube una imagen (JPG o PNG). Si tienes la planta en PDF, expórtala primero como imagen.');
+      ev.target.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      plantaDataURL = e.target.result;
+      document.getElementById('planta-thumb').src = plantaDataURL;
+      document.getElementById('planta-nombre').textContent = file.name;
+      document.getElementById('planta-preview').style.display = '';
+      document.getElementById('planta-btn-agregar').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function quitarPlanta() {
+    plantaDataURL = null;
+    document.getElementById('planta-file').value = '';
+    document.getElementById('planta-preview').style.display = 'none';
+    document.getElementById('planta-btn-agregar').style.display = '';
+  }
+
   // Utilidad: parsear número desde un input que puede tener comas
   function parseNum(val) {
     if (!val) return 0;
@@ -2508,15 +3344,14 @@
     calcularPrecioM2(); // recalcular también el precio por m²
   }
 
-  // Calcular Precio por M² ponderado:
-  // Base ponderada = m² interiores + (50% de m² exteriores)
-  // Precio M² = Precio de lista / Base ponderada
+  // Calcular Precio por M²:
+  // Precio M² = Precio de lista / M² totales (interior + terraza)
   function calcularPrecioM2() {
     const interior = parseNum(document.getElementById('m2-interior').value);
     const terraza = parseNum(document.getElementById('m2-terraza').value);
     const precioLista = parseNum(document.getElementById('precio-lista').value);
 
-    const baseM2 = interior + (terraza * 0.5);
+    const baseM2 = interior + terraza;
     const precioM2 = baseM2 > 0 ? precioLista / baseM2 : 0;
 
     document.getElementById('precio-m2').value = formatNum(precioM2, 0);
@@ -2599,7 +3434,15 @@
     const banos = valPorLabel(panel1, 'Baños');
     const estacionamiento = valPorLabel(panel1, 'Estacionamiento');
     const bodega = valPorLabel(panel1, 'Bodega');
-    const precioM2 = document.getElementById('precio-m2').value;
+
+    // Precio M² real: usar precio NETO de la unidad (con descuento, SIN los
+    // adicionales pagados: estacionamiento/bodega) sobre los m² totales.
+    const adicionales = (estadoPago.incluyeEstacionamiento ? estadoPago.estacMonto : 0)
+                      + (estadoPago.incluyeBodega ? estadoPago.bodegaMonto : 0);
+    const precioNetoUnidad = estadoPago.precioNeto - adicionales;
+    const baseM2Total = mInterior + mTerraza;
+    const precioM2Neto = baseM2Total > 0 ? Math.round(precioNetoUnidad / baseM2Total) : 0;
+    const precioM2 = formatNum(precioM2Neto, 0);
 
     // ------ 2. Datos del paso 2 (cliente y broker) ------
     const nombreCliente = valPorLabel(panel2, 'Nombre completo *') || 'Cliente sin definir';
@@ -2614,61 +3457,117 @@
     // ------ Subtítulo del proyecto ------
     const proyectoSub = `${tipoProducto} · Guadalajara`;
 
-    // ------ Rellenar header ------
+    // ------ Rellenar header V15 ------
     document.getElementById('doc-proyecto').textContent = proyecto;
-    document.getElementById('doc-proyecto-sub').textContent = proyectoSub;
+    document.getElementById('doc-proyecto-tag').textContent = tipoProducto.toUpperCase();
+    document.getElementById('doc-proyecto-sub').textContent = proyectoSub; // legacy oculto
+
+    // ------ Rellenar cliente y asesor V15 ------
     document.getElementById('doc-cliente').textContent = nombreCliente;
-    document.getElementById('doc-fecha').textContent = obtenerFechaHoy();
-    document.getElementById('doc-vigencia').textContent = obtenerFechaVigencia(15);
+    document.getElementById('doc-fecha-vigencia').textContent =
+      `Generada el ${obtenerFechaHoy()} · Vigente hasta ${obtenerFechaVigencia(15)}`;
+    document.getElementById('doc-fecha').textContent = obtenerFechaHoy(); // legacy oculto
+    document.getElementById('doc-vigencia').textContent = obtenerFechaVigencia(15); // legacy oculto
 
-    // ------ Rellenar hero numérico ------
+    // Asesor: prioridad broker del paso 2 → identidad activa → Álvaro Arizti
+    const asesorNombre = brokerNombre || asesorActivo() || 'Álvaro Arizti';
+    document.getElementById('doc-asesor').textContent = asesorNombre;
+    document.getElementById('doc-asesor-sub').textContent = 'TRUST Inmobiliaria';
+
+    // ------ Rellenar hero V15 (precio grande + descuento condicional) ------
     document.getElementById('doc-hero-precio').textContent = '$' + formatNum(estadoPago.precioNeto, 0);
-    const descMostrar = estadoPago.descuentoPct > 0
-      ? `Con descuento del ${(Math.round(estadoPago.descuentoPct * 100) / 100)}% aplicado`
-      : 'Sin descuento aplicado';
-    document.getElementById('doc-hero-precio-sub').textContent = descMostrar;
 
+    // Línea de estacionamiento pagado (si aplica)
+    const estacRow = document.getElementById('doc-hero-estac-row');
+    if (estadoPago.incluyeEstacionamiento && estadoPago.estacMonto > 0) {
+      estacRow.style.display = '';
+      document.getElementById('doc-hero-estac-amt').textContent = '$' + formatNum(estadoPago.estacMonto, 0);
+    } else {
+      estacRow.style.display = 'none';
+    }
+
+    // Línea de bodega pagada (si aplica)
+    const bodegaRow = document.getElementById('doc-hero-bodega-row');
+    if (estadoPago.incluyeBodega && estadoPago.bodegaMonto > 0) {
+      bodegaRow.style.display = '';
+      document.getElementById('doc-hero-bodega-amt').textContent = '$' + formatNum(estadoPago.bodegaMonto, 0);
+    } else {
+      bodegaRow.style.display = 'none';
+    }
+
+    const listaWrap = document.getElementById('doc-hero-lista-wrapper');
+    const ahorroRow = document.getElementById('doc-hero-ahorro-row');
+    const divisor = document.querySelector('#doc-hero .v15-hero-divisor');
+
+    if (estadoPago.descuentoPct > 0) {
+      // Con descuento: mostrar precio de lista tachado y bloque de ahorro
+      listaWrap.style.display = '';
+      ahorroRow.style.display = '';
+      if (divisor) divisor.style.display = '';
+      document.getElementById('doc-precio-lista-amt').textContent = '$' + formatNum(estadoPago.precioLista, 0);
+      const pctRounded = Math.round(estadoPago.descuentoPct * 100) / 100;
+      document.getElementById('doc-desc-pct').textContent = `AHORRO CON DESCUENTO DEL ${pctRounded}%`;
+      document.getElementById('doc-desc-amt').textContent = '− $' + formatNum(estadoPago.descuentoMonto, 0) + ' MXN';
+    } else {
+      // Sin descuento: ocultar bloque de precio de lista y ahorro
+      listaWrap.style.display = 'none';
+      ahorroRow.style.display = 'none';
+      if (divisor) divisor.style.display = 'none';
+    }
+
+    // Legacy IDs (ya no se muestran en V15, pero se dejan por si acaso)
+    document.getElementById('doc-hero-precio-sub').textContent = '';
     document.getElementById('doc-hero-enganche').textContent = '$' + formatNum(estadoPago.engMonto, 0);
-    document.getElementById('doc-hero-enganche-sub').textContent = `${(Math.round(estadoPago.engPct * 100) / 100)}% inicial`;
-
-    const heroEl = document.getElementById('doc-hero');
-    const mensBlock = document.getElementById('doc-hero-mensualidad-block');
-    if (incluyeMens) {
-      heroEl.classList.remove('hero-contado');
-      mensBlock.style.display = '';
-      document.getElementById('doc-hero-mensualidad').textContent = '$' + formatNum(estadoPago.menIndividual, 0);
-      document.getElementById('doc-hero-mensualidad-sub').textContent = `${estadoPago.menNumero} pagos durante obra`;
-    } else {
-      heroEl.classList.add('hero-contado');
-      mensBlock.style.display = 'none';
-    }
-
-    // ------ Rellenar info grid ------
-    document.getElementById('doc-modelo').textContent = modelo;
-    document.getElementById('doc-id').textContent = safeTextOrDash(idUnidad);
-    document.getElementById('doc-nivel').textContent = safeTextOrDash(nivel);
-    document.getElementById('doc-vista').textContent = safeTextOrDash(vista);
-    document.getElementById('doc-m2-parcial').textContent = `${mInterior.toFixed(2)} / ${mTerraza.toFixed(2)} m²`;
-    document.getElementById('doc-m2-total').textContent = `${mTotal.toFixed(2)} m²`;
-    document.getElementById('doc-recamaras').textContent = safeTextOrDash(recamaras);
-    document.getElementById('doc-banos').textContent = safeTextOrDash(banos);
-    document.getElementById('doc-estac').textContent = safeTextOrDash(estacionamiento);
-    document.getElementById('doc-bodega').textContent = safeTextOrDash(bodega);
-    document.getElementById('doc-precio-m2').textContent = '$' + precioM2;
-    document.getElementById('doc-broker').textContent = brokerLabel;
-
-    // ------ Rellenar desglose del precio ------
-    document.getElementById('doc-precio-lista-amt').textContent = '$' + formatNum(estadoPago.precioLista, 0);
-
-    const rowDesc = document.getElementById('doc-row-descuento');
-    if (estadoPago.descuentoMonto > 0) {
-      rowDesc.style.display = '';
-      document.getElementById('doc-desc-pct').textContent = `${(Math.round(estadoPago.descuentoPct * 100) / 100)}% sobre precio de lista`;
-      document.getElementById('doc-desc-amt').textContent = '-$' + formatNum(estadoPago.descuentoMonto, 0);
-    } else {
-      rowDesc.style.display = 'none';
-    }
+    document.getElementById('doc-hero-enganche-sub').textContent = '';
     document.getElementById('doc-precio-neto-amt').textContent = '$' + formatNum(estadoPago.precioNeto, 0);
+    if (incluyeMens) {
+      document.getElementById('doc-hero-mensualidad').textContent = '$' + formatNum(estadoPago.menIndividual, 0);
+      document.getElementById('doc-hero-mensualidad-sub').textContent = '';
+    }
+
+    // ------ Rellenar detalle de la unidad V15 (4 cards) ------
+    document.getElementById('doc-modelo').textContent = (modelo || '—').toUpperCase();
+    const idEl = document.getElementById('doc-id');
+    if (idUnidad && String(idUnidad).trim() !== '') {
+      idEl.style.display = '';
+      idEl.textContent = `Unidad ${String(idUnidad).trim()}`;
+    } else {
+      idEl.style.display = 'none';
+    }
+    document.getElementById('doc-m2-total').textContent = `${mTotal.toFixed(2)} m²`;
+    document.getElementById('doc-m2-parcial').textContent =
+      `Interior ${mInterior.toFixed(2)} · Terraza ${mTerraza.toFixed(2)}`;
+    document.getElementById('doc-nivel').textContent = nivel ? `Nivel ${nivel}` : '—';
+    document.getElementById('doc-vista').textContent = vista ? `Vista ${vista}` : '—';
+    document.getElementById('doc-precio-m2').textContent = '$' + precioM2;
+
+    // Leyenda del precio M²: solo mostrar "Precio con descuento" si hay descuento
+    const precioM2Desc = document.getElementById('doc-precio-m2-desc');
+    if (estadoPago.descuentoPct > 0) {
+      precioM2Desc.style.display = '';
+      precioM2Desc.textContent = 'Precio con descuento';
+    } else {
+      precioM2Desc.style.display = 'none';
+    }
+
+    // ------ Rellenar amenidades V15 (pluralizadas, con texto de bodega) ------
+    // Pluralizar: "1 Recámara" / "2 Recámaras" / "Sin recámaras"
+    function amenTexto(valor, singular, plural) {
+      const n = parseNum(valor);
+      if (!valor || String(valor).trim() === '' || String(valor).trim() === '—') return `— ${singular}`;
+      if (n === 0) return `Sin ${plural.toLowerCase()}`;
+      if (n === 1) return `1 ${singular}`;
+      return `${String(valor).trim()} ${plural}`;
+    }
+    document.getElementById('doc-recamaras').textContent = amenTexto(recamaras, 'Recámara', 'Recámaras');
+    document.getElementById('doc-banos').textContent = amenTexto(banos, 'Baño', 'Baños');
+    document.getElementById('doc-estac').textContent = amenTexto(estacionamiento, 'Estacionamiento', 'Estacionamientos');
+    document.getElementById('doc-bodega').textContent = safeTextOrDash(bodega); // legacy
+    const bodNum = parseNum(bodega);
+    document.getElementById('doc-bodega-txt').textContent = bodNum > 0
+      ? `${bodNum} Bodega${bodNum > 1 ? 's' : ''}`
+      : 'Bodega no incluida';
+    document.getElementById('doc-broker').textContent = brokerLabel; // legacy oculto
 
     // ------ Rellenar estructura del pago (3 cards) ------
     const structEl = document.getElementById('doc-structure');
@@ -2676,14 +3575,15 @@
 
     document.getElementById('doc-struct-eng-amt').textContent = '$' + formatNum(estadoPago.engMonto, 0);
     document.getElementById('doc-struct-eng-pct').textContent = `${(Math.round(estadoPago.engPct * 100) / 100)}%`;
-    document.getElementById('doc-struct-eng-detail').textContent = 'Pago inicial';
+    document.getElementById('doc-struct-eng-detail').textContent = 'Contrato de compraventa';
 
     if (incluyeMens) {
       structEl.classList.remove('structure-2');
       mensCard.style.display = '';
       document.getElementById('doc-struct-mens-amt').textContent = '$' + formatNum(estadoPago.menIndividual, 0);
-      document.getElementById('doc-struct-mens-num').textContent = `${estadoPago.menNumero} pagos`;
-      document.getElementById('doc-struct-mens-total').textContent = `Total $${formatNum(estadoPago.menMonto, 0)}`;
+      document.getElementById('doc-struct-mens-num').textContent = `${estadoPago.menNumero}`;
+      document.getElementById('doc-struct-mens-total').textContent =
+        `Durante obra · sin intereses`;
     } else {
       structEl.classList.add('structure-2');
       mensCard.style.display = 'none';
@@ -2736,21 +3636,22 @@
 
     let html = '';
     pagos.forEach((p, idx) => {
-      const row = Math.floor(idx / cols) + 1;
-      const isLastRow = row === totalRows;
-      const classes = ['sh-cell'];
-      if (p.key) classes.push('sh-key');
-      if (isLastRow) classes.push('sh-last-row');
+      const classes = ['v15-crono-cell'];
+      if (p.key) classes.push('v15-crono-key');
+      // Etiquetas cortas para enganche/escrituración en el cronograma
+      let label = p.label;
+      if (label === 'Enganche') label = 'ENGANCHE';
+      else if (label === 'Escrituración') label = 'ESCRIT.';
       html += `<div class="${classes.join(' ')}">
-        <span class="sh-label">${p.label}</span>
-        <span class="sh-amount">$${formatNum(p.monto, 0)}</span>
+        <span class="v15-crono-label">${label}</span>
+        <span class="v15-crono-amount">$${formatNum(p.monto, 0)}</span>
       </div>`;
     });
 
     // Llenar celdas vacías al final para mantener el grid balanceado visualmente
     const celdasVacias = (totalRows * cols) - totalPagos;
     for (let i = 0; i < celdasVacias; i++) {
-      html += '<div class="sh-cell sh-empty sh-last-row"></div>';
+      html += '<div class="v15-crono-cell v15-crono-empty"></div>';
     }
 
     schedGrid.innerHTML = html;
@@ -2767,6 +3668,35 @@
       sumMens.textContent = `${estadoPago.menNumero} × $${formatNum(estadoPago.menIndividual, 0)}`;
     } else {
       sumMens.textContent = 'No aplica';
+    }
+
+    // ------ Hoja 2: planta arquitectónica (si se cargó imagen) ------
+    const hoja2 = document.getElementById('doc-carta-planta');
+    if (plantaDataURL) {
+      hoja2.style.display = '';
+      document.getElementById('doc-planta-img').src = plantaDataURL;
+
+      // Título emocional: "Tu nuevo depa" (o "Tu nuevo local" si es Local)
+      const esLocal = (modelo || '').toLowerCase().includes('local');
+      document.getElementById('doc-planta-title').textContent = esLocal ? 'Tu nuevo local' : 'Tu nuevo depa';
+
+      // Subtítulo: proyecto · modelo · nivel
+      const subParts = [proyecto, modelo];
+      if (nivel) subParts.push(`Nivel ${nivel}`);
+      document.getElementById('doc-planta-sub').textContent = subParts.join(' · ');
+
+      // Caption: superficies
+      document.getElementById('doc-planta-caption').textContent =
+        `Superficie total ${mTotal.toFixed(2)} m² · Interior ${mInterior.toFixed(2)} · Terraza ${mTerraza.toFixed(2)}`;
+
+      // Clonar el logo del header 1 si aún no está
+      const logoDest = document.getElementById('doc-planta-logo');
+      if (logoDest && !logoDest.querySelector('svg')) {
+        const logoSrc = document.querySelector('.v15-header-logo svg');
+        if (logoSrc) logoDest.appendChild(logoSrc.cloneNode(true));
+      }
+    } else {
+      hoja2.style.display = 'none';
     }
 
     // Guardar datos para nombre del PDF
@@ -2787,7 +3717,82 @@
       .substring(0, 40);
   }
 
+  // === REGISTRO DE COTIZACIONES ========================================
+  // URL del Web App de Google Apps Script que registra cada cotización
+  // en el Google Sheet "Registro Cotizaciones TRUST".
+  // ⚠️ CONFIGURAR: pegar aquí la URL que da Apps Script al hacer "Implementar".
+  // Si está vacío, el cotizador funciona normal pero no registra.
+  const REGISTRO_URL = 'https://script.google.com/macros/s/AKfycbxl2aQU6QvWeMNyZaERtbQshI9DKn8RwI7JBY_g6DCvaQyw-GWVgtLo3bGVn7mEnBcW/exec';
+
+  // --- Identidad del asesor (persistida en el dispositivo) ---
+  function inicializarAsesor() {
+    const sel = document.getElementById('asesor-activo');
+    const guardado = localStorage.getItem('trust_asesor');
+    if (guardado) sel.value = guardado;
+    sel.addEventListener('change', function() {
+      localStorage.setItem('trust_asesor', sel.value);
+      sel.classList.remove('asesor-pendiente');
+    });
+  }
+
+  function asesorActivo() {
+    return document.getElementById('asesor-activo').value || '';
+  }
+
+  // --- Envío del registro (fire-and-forget) ---
+  function registrarCotizacion() {
+    if (!REGISTRO_URL) return; // sin URL configurada, no registra
+
+    try {
+      const payload = {
+        asesor: asesorActivo(),
+        cliente: (window._cotizacionData && window._cotizacionData.cliente) || '',
+        proyecto: (window._cotizacionData && window._cotizacionData.proyecto) || '',
+        modelo: document.getElementById('doc-modelo').textContent || '',
+        idUnidad: (document.getElementById('doc-id').textContent || '').replace('Unidad ', ''),
+        nivel: document.getElementById('doc-nivel').textContent || '',
+        m2Total: document.getElementById('doc-m2-total').textContent || '',
+        precioLista: estadoPago.precioLista,
+        descuentoPct: estadoPago.descuentoPct,
+        descuentoMonto: estadoPago.descuentoMonto,
+        estacionamientoPagado: estadoPago.incluyeEstacionamiento ? estadoPago.estacMonto : 0,
+        bodegaPagada: estadoPago.incluyeBodega ? estadoPago.bodegaMonto : 0,
+        precioFinal: estadoPago.precioNeto,
+        engMonto: estadoPago.engMonto,
+        engPct: estadoPago.engPct,
+        mensNumero: estadoPago.incluyeMensualidades ? estadoPago.menNumero : 0,
+        mensMonto: estadoPago.incluyeMensualidades ? estadoPago.menIndividual : 0,
+        escMonto: estadoPago.escMonto,
+        escPct: estadoPago.escPct,
+        precioM2: document.getElementById('doc-precio-m2').textContent || ''
+      };
+
+      // no-cors: Apps Script no responde CORS; el registro llega igual.
+      fetch(REGISTRO_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      }).catch(function() { /* silencioso: no bloquear la descarga */ });
+    } catch (err) {
+      // El registro nunca debe romper la descarga del PDF
+      console.warn('Registro no enviado:', err);
+    }
+  }
+
   function descargarPDF() {
+    // Validar identidad del asesor antes de generar
+    if (!asesorActivo()) {
+      const sel = document.getElementById('asesor-activo');
+      sel.classList.add('asesor-pendiente');
+      sel.focus();
+      alert('Selecciona tu nombre en "Asesor" (arriba a la derecha) antes de descargar la cotización.');
+      return;
+    }
+
+    // Registrar la cotización en el Sheet (no bloquea si falla)
+    registrarCotizacion();
+
     const data = window._cotizacionData || { proyecto: 'Cotizacion', cliente: 'Cliente', fecha: new Date() };
     const d = data.fecha;
     const fechaStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -2833,6 +3838,10 @@
     descuentoPct: 0,
     descuentoMonto: 0,
     precioNeto: 3278691,
+    incluyeEstacionamiento: false,
+    estacMonto: 0,
+    incluyeBodega: false,
+    bodegaMonto: 0,
     incluyeMensualidades: true,
     engPct: 20,
     engMonto: 0,
@@ -2874,8 +3883,11 @@
     estadoPago.precioLista = parseNum(document.getElementById('precio-lista').value);
     setTexto('resumen-precio-lista', '$' + formatNum(estadoPago.precioLista, 0));
 
-    // 2. Precio neto = precio lista - descuento
-    estadoPago.precioNeto = estadoPago.precioLista - estadoPago.descuentoMonto;
+    // 2. Precio neto = precio lista - descuento + adicionales pagados (si aplican)
+    // El descuento aplica solo sobre la unidad; estacionamiento y bodega son adicionales fijos.
+    estadoPago.estacMonto = estadoPago.incluyeEstacionamiento ? leerNum('estac-monto') : 0;
+    estadoPago.bodegaMonto = estadoPago.incluyeBodega ? leerNum('bodega-monto') : 0;
+    estadoPago.precioNeto = estadoPago.precioLista - estadoPago.descuentoMonto + estadoPago.estacMonto + estadoPago.bodegaMonto;
     if (estadoPago.precioNeto < 0) estadoPago.precioNeto = 0;
     setTexto('precio-neto-box', '$' + formatNum(estadoPago.precioNeto, 0));
 
@@ -3087,6 +4099,22 @@
     recalcularPaso3();
   }
 
+  // Toggle estacionamiento pagado on/off
+  function onToggleEstacionamiento() {
+    estadoPago.incluyeEstacionamiento = document.getElementById('toggle-estacionamiento').checked;
+    const wrapper = document.getElementById('estac-monto-wrapper');
+    wrapper.style.display = estadoPago.incluyeEstacionamiento ? '' : 'none';
+    recalcularPaso3();
+  }
+
+  // Toggle bodega pagada on/off
+  function onToggleBodega() {
+    estadoPago.incluyeBodega = document.getElementById('toggle-bodega').checked;
+    const wrapper = document.getElementById('bodega-monto-wrapper');
+    wrapper.style.display = estadoPago.incluyeBodega ? '' : 'none';
+    recalcularPaso3();
+  }
+
   // Renderizar tabla de amortización
   function renderizarAmortizacion() {
     const cont = document.getElementById('amortizacion-table');
@@ -3172,6 +4200,15 @@
     });
 
     document.getElementById('toggle-mensualidades').addEventListener('change', onToggleMensualidades);
+    inicializarAsesor();
+    document.getElementById('toggle-estacionamiento').addEventListener('change', onToggleEstacionamiento);
+    document.getElementById('estac-monto').addEventListener('input', function() {
+      if (estadoPago.incluyeEstacionamiento) recalcularPaso3();
+    });
+    document.getElementById('toggle-bodega').addEventListener('change', onToggleBodega);
+    document.getElementById('bodega-monto').addEventListener('input', function() {
+      if (estadoPago.incluyeBodega) recalcularPaso3();
+    });
 
     // Interceptar el botón Continuar para no permitir avanzar con error
     const btn = document.getElementById('btn-continuar-3');
